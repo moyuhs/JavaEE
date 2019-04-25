@@ -5,7 +5,7 @@ import java.sql.*;
 /**
  * JDBC的基础使用:insert添加
  */
-public class DemoJdbc {
+public class Demo01Jdbc {
     public static void main(String[] args) {
         Statement stmt = null;
         Connection conn = null;
