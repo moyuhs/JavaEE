@@ -3,7 +3,7 @@ package com.java.jdbc;
 
 import com.java.domain.Student;
 import com.java.util.DruidUtils;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
