@@ -33,7 +33,7 @@ public class DruidUtils {
     }
 
     /**
-     * 获取连接
+     * 获取连接池对象
      */
     public static Connection getConnection() throws SQLException {
         return ds.getConnection();
@@ -79,7 +79,7 @@ public class DruidUtils {
     }
 
     /**
-     * 获取连接池方法
+     * 获取连接池资源
      */
 
     public static DataSource getDataSource() {

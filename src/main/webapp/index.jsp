@@ -12,12 +12,12 @@
 </head>
 <body>
 <p>Hello word</p>
-<form action="/javaee/Demo4request" method="post">
+<form action="/loginServlet" method="post">
     <label for="username">用户姓名：</label>
-    <input type="text" placeholder="请输入用户密码" id="username" name="username">
+    <input type="text" placeholder="请输入用户密码" id="username" name="uid">
     <br>
     <label for="pwd">用户密码：</label>
-    <input type="password" placeholder="请输入密码" id="pwd" name="pwd">
+    <input type="password" placeholder="请输入密码" id="pwd" name="upwd">
     <br>
     <input type="checkbox" name="hobby" value="game">游戏
     <input type="checkbox" name="hobby" value="study">学习
