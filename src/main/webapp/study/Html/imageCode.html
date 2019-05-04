@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证码实现</title>
+    <script>
+        /*
+            分析：
+            点击超链接或图片，需要换一张
+            1.给超链接和图片绑定单击事件
+            2.重新设置图片的src属性值
+         */
+        window.onload = function () {
+            //1.获取图片对象
+            var img = document.getElementById("checkCode");
+            //2.绑定事件
+            img.onclick = function () {
+                //加时间戳
+                var date = new Date().getTime();
+                img.src = "/checkCodeServlet?+date"
+            }
+        }
+    </script>
+</head>
+<body>
+<label for="Contrast">请输验证码：</label>
+<input type="text" placeholder="请输入验证码" id="Contrast" name="check"><br><br>
+<img id="checkCode" src="/checkCodeServlet"/>
+<a id="change" href="">看不清楚？换一张</a><br>
+<input type="submit" value="提交">
+</body>
+</html>

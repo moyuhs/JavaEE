@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Response重定向,地址栏会发生改变
+ * Response重定向,地址栏会发生改变,数据不能共享
  */
 @WebServlet("/demo01Response")
 public class Demo01Response extends HttpServlet {

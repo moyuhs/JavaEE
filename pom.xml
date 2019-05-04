@@ -158,17 +158,7 @@
             <version>1.16.18</version>
             <scope>provided</scope>
         </dependency>
-        <!--<dependency>
-            <groupId>io.github.biezhi</groupId>
-            <artifactId>wechat-api</artifactId>
-            <version>1.0.6</version>
-           <exclusions>
-                <exclusion>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-classic</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>-->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
@@ -179,6 +169,25 @@
             <artifactId>spring-jdbc</artifactId>
             <version>5.1.5.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>mchange-commons-java</artifactId>
+            <version>0.2.15</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>mchange-commons-java</artifactId>
+            <version>0.2.11</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.12</version>
+        </dependency>
+
+
 
     </dependencies>
 

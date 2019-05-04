@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -23,27 +24,56 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //1.设置编码
         req.setCharacterEncoding( "utf-8" );
-        /*2.获取请求参数
-        String username = req.getParameter( "username" );
-        String pwd = req.getParameter( "pwd" );
-        //3.封装user对象
-        User loginuser = new User();
-        loginuser.setUid( username );
-        loginuser.setUpwd( pwd );*/
-
         //2.获取请求参数
-        Map<String, String[]> map = req.getParameterMap();
+        String username = req.getParameter( "username" );
+        String password = req.getParameter( "password" );
+        String checkCode = req.getParameter( "checkCode" );
 
-        //测试是否能获取数据
-       /* for (String s : map.keySet()) {
-            System.out.println(s);
-            String[] strings = map.get( s );
-            for (String string : strings) {
-                System.out.println(string);
+        //3.1 先获取生成的验证码
+        HttpSession session = req.getSession();
+        String checkCode_session = (String) session.getAttribute( "checkCode_session" );
+        //删除session中储存的验证码,验证码使用一次立即销毁
+        session.removeAttribute( "checkCode_session" );
+
+        //3.2判断验证码是否正确
+        if (checkCode_session != null && checkCode_session.equalsIgnoreCase( checkCode )) {
+            //或略大小写比较
+            //判断用户名和密码是否一致
+
+            //封装user对象
+            User loginuser = new User();
+            loginuser.setUid( username );
+            loginuser.setUpwd( password );
+
+            //调用UserDao的login方法
+            UserDao dao = new UserDao();
+            User user = dao.login( loginuser );
+
+            //判断user是否存在
+            if (user == null) {
+                //登录失败
+                //储存提示信息到request
+                req.setAttribute( "login_error", "用户名或密码错误" );
+                //转发到登录页面
+                req.getRequestDispatcher( "/study/jsp/login.jsp" ).forward( req, resp );
+            } else {
+                //登录成功
+                //储存信息，用户信息
+                session.setAttribute( "user", user.getUid() );
+                //重定向到成功页面
+                resp.sendRedirect(  "/study/jsp/success.jsp" );
             }
-            System.out.println("------------------------");
-        }*/
+        } else {
+            //验证码不一致
+            //储存提示信息到request
+            req.setAttribute( "cc_error", "验证码错误" );
+            //转发到登录页面
+            req.getRequestDispatcher( "/study/jsp/login.jsp" ).forward( req, resp );
+        }
 
+
+        /*//2.获取请求参数
+        Map<String, String[]> map = req.getParameterMap();
         //3.获取User对象
         User loginuser = new User();
         //3.2使用BeanUtils封装
@@ -53,23 +83,7 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
-        }
-
-        //4.调用UserDao的login方法
-        UserDao dao = new UserDao();
-        User user = dao.login( loginuser );
-
-        //5.判断user
-        if (user == null) {
-            //登录失败
-            req.getRequestDispatcher( "/failServlet" ).forward( req, resp );
-        } else {
-            //登录成功
-            //储存数据
-            req.setAttribute( "user", user );
-            req.getRequestDispatcher( "/successServlet" ).forward( req, resp );
-        }
-
+        }*/
     }
 
     @Override
