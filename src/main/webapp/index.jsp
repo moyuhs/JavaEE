@@ -6,23 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>index</title>
 
+    <!-- 1. 导入CSS的全局样式 -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- 2. jQuery导入，建议使用1.9以上的版本 -->
     <script src="js/jquery-3.4.0.min.js"></script>
+    <!-- 3. 导入bootstrap的js文件 -->
     <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<p>Hello word</p>
-<form action="/loginServlet" method="post">
-    <label for="username">用户姓名：</label>
-    <input type="text" placeholder="请输入用户密码" id="username" name="uid">
-    <br>
-    <label for="pwd">用户密码：</label>
-    <input type="password" placeholder="请输入密码" id="pwd" name="upwd">
-    <br>
-    <input type="checkbox" name="hobby" value="game">游戏
-    <input type="checkbox" name="hobby" value="study">学习
-    <br>
-    <input type="submit" value="提交">
-</form>
+<div>${user.name},欢迎您</div>
+<div align="center">
+    <a href="/findUserByPageServlet" style="text-decoration:none;font-size:33px">查询所有用户信息</a>
+</div>
 </body>
 </html>

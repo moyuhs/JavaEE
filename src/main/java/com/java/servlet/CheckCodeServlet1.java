@@ -1,4 +1,4 @@
-package com.java.Response;
+package com.java.servlet;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -16,8 +16,8 @@ import java.util.Random;
 /**
  * 网页验证码实现
  */
-@WebServlet("/checkCodeServlet")
-public class CheckCodeServlet extends HttpServlet {
+@WebServlet("/checkCodeServlet1")
+public class CheckCodeServlet1 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int width = 100;//验证码宽度

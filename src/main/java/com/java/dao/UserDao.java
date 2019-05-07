@@ -1,39 +1,74 @@
 package com.java.dao;
 
 import com.java.domain.User;
-import com.java.util.DruidUtils;
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
+import java.util.Map;
 
 /**
- * 操作数据库中User表类
+ * 用户操作的DAO
  */
-public class UserDao {
-
-    //声明JDBCTemplate对象共用
-    private JdbcTemplate template = new JdbcTemplate( DruidUtils.getDataSource() );
+public interface UserDao {
+    /**
+     * 查询数据
+     *
+     * @return
+     */
+    public List<User> findAll();
 
     /**
-     * 登录方法
+     * 登录接口
      *
-     * @param loginUser 只有用户名和密码
-     * @return user包含所有数据, 没有返回null
+     * @param username 用户账号
+     * @param password 用户密码
+     * @return
      */
-    public User login(User loginUser) {
-        try {
-            //1.编写sql
-            String sql = "select * from users where uid = ? and upwd = ?";
-            //2.调用query方法
-            User user = template.queryForObject( sql,
-                    new BeanPropertyRowMapper<User>( User.class ),
-                    loginUser.getUid(), loginUser.getUpwd() );
-            return user;
-        } catch (DataAccessException e) {
-            e.printStackTrace();//记录日志
-            return null;
-        }
-    }
+    User findUserByUsernameAndPassword(String username, String password);
+
+    /**
+     * 添加数据接口
+     *
+     * @param user
+     */
+    void add(User user);
+
+    /**
+     * 根据id删除数据
+     *
+     * @param i
+     */
+    void delete(int i);
+
+    /**
+     * 根据id查询接口
+     *
+     * @param id
+     * @return
+     */
+    User findById(int id);
+
+    /**
+     * 根据id修改数据
+     *
+     * @param user
+     */
+    void update(User user);
+
+    /**
+     * 查询总记录数
+     *
+     * @return
+     * @param condition
+     */
+    int findTotalCount(Map<String, String[]> condition);
+
+    /**
+     * 分页查询每页记录
+     *
+     * @param start
+     * @param rows
+     * @param condition
+     * @return
+     */
+    List<User> findByPage(int start, int rows, Map<String, String[]> condition);
 }

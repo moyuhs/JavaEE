@@ -1,6 +1,6 @@
 package com.java.servlet;
 
-import com.java.domain.User;
+import com.java.domain.Users;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,14 +18,14 @@ public class SuccessServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         //获取request作用域中共享的user对象
-        User user = (User) req.getAttribute( "user" );
+        Users users = (Users) req.getAttribute( "user" );
 
-        if (user != null) {
+        if (users != null) {
             //给页面写一句话
             //设置编码
             resp.setContentType( "text/html;charset=utf-8" );
             //输出
-            resp.getWriter().write( "登录成功！" + user.getUid() + "，欢迎您" );
+            resp.getWriter().write( "登录成功！" + users.getUid() + "，欢迎您" );
         }
     }
 
