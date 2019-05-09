@@ -13,6 +13,16 @@
         <servlet-name>Demo01</servlet-name>
         <url-pattern>/Demo01</url-pattern>
     </servlet-mapping>-->
+    <!--配置监听器
+    <listener>
+        <listener-class>com.java.listener.ContextLoaderListener</listener-class>
+    </listener>-->
+
+    <!-- 指定初始化参数 -->
+    <!--<context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/classes/applicationContext.xml</param-value>
+    </context-param>-->
 
     <!--处理静态css,js,image等资源-->
     <servlet-mapping>
