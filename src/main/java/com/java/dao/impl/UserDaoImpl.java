@@ -95,8 +95,6 @@ public class UserDaoImpl implements UserDao {
                 params.add( "%" + value + "%" );//？条件的值
             }
         }
-        System.out.println(sb.toString());
-        System.out.println(params);
         //2.返回总记录条数
         return template.queryForObject( sb.toString(), Integer.class, params.toArray() );
     }
