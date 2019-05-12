@@ -1,11 +1,15 @@
 package com.java.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Person {
     private String name;
     private int age;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
 
     /**
@@ -23,6 +27,7 @@ public class Person {
         }
     }
 
+    @JsonIgnore //json转换时忽略该属性
     public String a;
     protected String b;
     String c;
