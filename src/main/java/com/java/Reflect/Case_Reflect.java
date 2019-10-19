@@ -2,7 +2,6 @@ package com.java.Reflect;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.Properties;
 

@@ -1,8 +1,11 @@
 package com.java.jdbc;
 
-import com.java.util.JDBCUtils;
+import com.java.util.JdbcUtils;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 /**
@@ -41,7 +44,7 @@ public class Demo05JDBC {
         ResultSet rs = null;
         try {
             //1.获取数据库连接
-            conn = JDBCUtils.getConnection();
+            conn = JdbcUtils.getConnection();
             //2.定义sql
             String sql = "select * from users where uid = ? and upwd = ?  ";
             //3.获取执行sql的对象
@@ -56,7 +59,7 @@ public class Demo05JDBC {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.close( rs, pstmt, conn );
+            JdbcUtils.close( rs, pstmt, conn );
         }
         return false;
     }

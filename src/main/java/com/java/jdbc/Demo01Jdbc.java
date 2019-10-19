@@ -1,8 +1,13 @@
 package com.java.jdbc;
 
-import java.sql.*;
+import com.java.util.JdbcUtils;
 
-import static java.lang.System.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import static java.lang.System.out;
 
 /**
  * JDBC的基础使用:insert添加
@@ -34,25 +39,9 @@ public class Demo01Jdbc {
             e.printStackTrace();
         } finally {
             //7. 释放资源
-            close( stmt, conn );
+            JdbcUtils.close( stmt, conn );
         }
     }
 
-    public static void close(Statement stmt, Connection conn) {
-        //避免空指针异常
-        if (stmt != null) {
-            try {
-                stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+
 }

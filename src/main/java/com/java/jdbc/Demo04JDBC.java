@@ -1,8 +1,11 @@
 package com.java.jdbc;
 
-import com.java.util.JDBCUtils;
+import com.java.util.JdbcUtils;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * JDBC的基础使用:ResultSet返回查询结果
@@ -13,19 +16,15 @@ public class Demo04JDBC {
         Statement stmt = null;
         ResultSet rs = null;
         try {
-           /* //1.注册驱动
-            Class.forName( "com.mysql.jdbc.Driver" );
-            //2.获取链接对象
-            conn = DriverManager.getConnection( "jdbc:mysql:///bank", "root", "AngelBeats" );*/
-            //2.使用工具类进行连接
-            conn = JDBCUtils.getConnection();
-            //3.定义sql
+            //1.使用工具类获取连接对象
+            conn = JdbcUtils.getConnection();
+            //2.定义查询sql
             String sql = "select * from users";
-            //4.获取执行sql对象
+            //3.获取执行sql对象
             stmt = conn.createStatement();
-            //5.执行sql
+            //4.执行sql
             rs = stmt.executeQuery( sql );
-            //6.处理结果
+            //5.处理结果
             //循环判断游标是否是最后一行末尾
             while (rs.next()) {
                 String id = rs.getString( "uid" );
@@ -36,28 +35,7 @@ public class Demo04JDBC {
             e.printStackTrace();
         } finally {
             //7.释放资源
-           /*if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }*/
-            JDBCUtils.close( rs, stmt, conn );
+            JdbcUtils.close( rs, stmt, conn );
         }
     }
 }

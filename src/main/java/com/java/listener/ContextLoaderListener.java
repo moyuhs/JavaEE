@@ -1,12 +1,5 @@
 package com.java.listener;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
-import java.io.FileInputStream;
-
-
 /*@WebListener
 public class ContextLoaderListener implements ServletContextListener {
 

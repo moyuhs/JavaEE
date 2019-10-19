@@ -1,7 +1,5 @@
 package com.java.servlet;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.java.domain.Province;
 import com.java.service.ProvinceService;
 import com.java.service.impl.ProvinceServiceImpl;
 
@@ -11,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * 省份返回方法

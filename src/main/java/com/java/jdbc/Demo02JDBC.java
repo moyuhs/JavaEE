@@ -1,6 +1,6 @@
 package com.java.jdbc;
 
-import com.java.util.JDBCUtils;
+import com.java.util.JdbcUtils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,7 +20,7 @@ public class Demo02JDBC {
             //2.获取链接对象
             conn = DriverManager.getConnection( "jdbc:mysql:///bank", "root", "AngelBeats" );
             //3.定义sql
-            String sql = "update users set upwd = 102 where uid = '琳琳' ";
+            String sql = "update users set upwd = 102 where uid = '596459193' ";
             //4.获取执行sql对象
             stmt = conn.createStatement();
             //5.执行sql
@@ -32,13 +32,11 @@ public class Demo02JDBC {
             } else {
                 System.out.println( "修改失败！" );
             }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {
             //7.释放资源
-            JDBCUtils.close( stmt,conn );
+            JdbcUtils.close( stmt,conn );
         }
     }
 }

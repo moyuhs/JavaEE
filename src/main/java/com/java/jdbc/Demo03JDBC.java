@@ -1,6 +1,6 @@
 package com.java.jdbc;
 
-import com.java.util.JDBCUtils;
+import com.java.util.JdbcUtils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,13 +32,11 @@ public class Demo03JDBC {
             } else {
                 System.out.println( "删除失败！" );
             }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {
             //7.释放资源
-            JDBCUtils.close( stmt,conn );
+            JdbcUtils.close( stmt,conn );
         }
     }
 }
