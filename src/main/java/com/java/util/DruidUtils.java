@@ -25,8 +25,6 @@ public class DruidUtils {
             pro.load( DruidUtils.class.getClassLoader().getResourceAsStream( "config/druid/druid.properties" ) );
             //2.获取DataSource
             ds = DruidDataSourceFactory.createDataSource( pro );
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -2,6 +2,8 @@ package com.java.jdbc;
 
 import java.sql.*;
 
+import static java.lang.System.*;
+
 /**
  * JDBC的基础使用:insert添加
  */
@@ -13,45 +15,44 @@ public class Demo01Jdbc {
             //1. 注册驱动
             Class.forName( "com.mysql.jdbc.Driver" );
             //2. 定义sql
-            String sql = "insert into users values('琳琳',123456)";
+            String sql = "insert into Student values(null,'琳琳',18)";
             //3.获取Connection对象
-            conn = DriverManager.getConnection( "jdbc:mysql:///bank", "root", "AngelBeats" );
+            conn = DriverManager.getConnection( "jdbc:mysql://47.97.185.117:3306/study?useUnicode=true&characterEncoding=utf-8&useSSL=false", "admin", "admin" );
             //4.获取执行sql的对象 Statement
             stmt = conn.createStatement();
-            //5.执行sql
-            int count = stmt.executeUpdate( sql );//影响的行数
+            //5.执行sql,返回受影响的行数
+            int count = stmt.executeUpdate( sql );
             //6.处理结果
-            System.out.println( count );
+            out.println( count );
             if (count > 0) {
-                System.out.println( "添加成功！" );
+                out.println( "添加成功！" );
             } else {
-                System.out.println( "添加失败！" );
+                out.println( "添加失败！" );
             }
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         } finally {
-            //stmt.close();
             //7. 释放资源
-            //避免空指针异常
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+            close( stmt, conn );
+        }
+    }
 
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+    public static void close(Statement stmt, Connection conn) {
+        //避免空指针异常
+        if (stmt != null) {
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
-
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -86,6 +86,12 @@
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
             <version>0.9.5.3</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>mchange-commons-java</artifactId>
+                    <groupId>com.mchange</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -129,6 +135,12 @@
             <groupId>cn.wanghaomiao</groupId>
             <artifactId>JsoupXpath</artifactId>
             <version>2.2.1</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jsoup</artifactId>
+                    <groupId>org.jsoup</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
@@ -136,6 +148,12 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5.2</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-codec</artifactId>
+                    <groupId>commons-codec</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
@@ -162,6 +180,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-jdbc</artifactId>
+                    <groupId>org.springframework</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

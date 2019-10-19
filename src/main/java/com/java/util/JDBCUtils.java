@@ -1,5 +1,7 @@
 package com.java.util;
 
+import com.java.jdbc.Demo01Jdbc;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
@@ -39,9 +41,7 @@ public class JDBCUtils {
             driver = pro.getProperty( "driver" );
             //4.注册驱动
             Class.forName( driver );
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -62,21 +62,7 @@ public class JDBCUtils {
      * @param conn
      */
     public static void close(Statement stmt, Connection conn) {
-        if (stmt != null) {
-            try {
-                stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        Demo01Jdbc.close( stmt, conn );
     }
 
     /**
@@ -94,20 +80,6 @@ public class JDBCUtils {
             }
         }
 
-        if (stmt != null) {
-            try {
-                stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        Demo01Jdbc.close( stmt, conn );
     }
 }
