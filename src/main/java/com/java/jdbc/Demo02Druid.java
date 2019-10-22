@@ -17,12 +17,13 @@ public class Demo02Druid {
             //1.获取连接
             conn = DruidUtils.getConnection();
             //2.定义sql
-            String sql = "insert into users value(?,?)";
+            String sql = "insert into users value(?,?,?)";
             //3.获取pstmt对象
             pstmt = conn.prepareStatement( sql );
             //4.给？赋值
-            pstmt.setString( 1, "13795725154" );
+            pstmt.setString( 1, "test" );
             pstmt.setString( 2, "123456" );
+            pstmt.setDouble( 3,5000 );
             //5.执行sql
             int count = pstmt.executeUpdate();
             System.out.println( count );

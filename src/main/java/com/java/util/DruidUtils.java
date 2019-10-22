@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 import java.util.Properties;
 
 /**
@@ -14,14 +15,17 @@ import java.util.Properties;
  */
 public class DruidUtils {
 
-    //1.定义成员变量 DataSource
+    /**
+     * 定义成员变量 DataSource
+     */
     private static DataSource ds;
 
     static {
         try {
             //1.加载配置文件
             Properties pro = new Properties();
-            pro.load( DruidUtils.class.getClassLoader().getResourceAsStream( "config/druid/druid.properties" ) );
+            //通过当前的类加载器，以流的形式加载classes下的配置文件
+            pro.load( Objects.requireNonNull( DruidUtils.class.getClassLoader().getResourceAsStream( "config/druid/druid.properties" ) ) );
             //2.获取DataSource
             ds = DruidDataSourceFactory.createDataSource( pro );
         } catch (Exception e) {
@@ -40,45 +44,16 @@ public class DruidUtils {
      * 释放资源
      */
     public static void close(Statement stmt, Connection conn) {
-
-        close( null, stmt, conn );
+        JdbcUtils.close( stmt, conn );
     }
 
-
     public static void close(ResultSet rs, Statement stmt, Connection conn) {
-
-
-        if (rs != null) {
-            try {
-                rs.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-        if (stmt != null) {
-            try {
-                stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-        if (conn != null) {
-            try {
-                conn.close();//归还连接
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        JdbcUtils.close( rs, stmt, conn );
     }
 
     /**
      * 获取连接池资源
      */
-
     public static DataSource getDataSource() {
         return ds;
     }
