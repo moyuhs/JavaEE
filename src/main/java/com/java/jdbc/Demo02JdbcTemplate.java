@@ -3,6 +3,7 @@ package com.java.jdbc;
 
 import com.java.domain.Student;
 import com.java.util.DruidUtils;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,7 +17,9 @@ import java.util.Map;
  */
 public class Demo02JdbcTemplate {
     //Junit单元测试，让方法可以独立运行
-    //1.获取JdbcTemplate对象
+    /**
+     * 1.创建共用的JdbcTemplate对象
+     */
     private JdbcTemplate template = new JdbcTemplate( DruidUtils.getDataSource() );
 
     /**
@@ -26,8 +29,8 @@ public class Demo02JdbcTemplate {
     public void test1() {
         //2.定义sql
         String sql = "update users set upwd = 123456 where uid = ?";
-        int count = template.update( sql, "13795725154" );
-        System.out.println( count );
+        int count = template.update( sql, "admin" );
+        Assert.assertEquals( 1, count );
     }
 
     /**
@@ -35,9 +38,9 @@ public class Demo02JdbcTemplate {
      */
     @Test
     public void test2() {
-        String sql = "insert into users values(?,?)";
-        int count = template.update( sql, "596459193", 123456 );
-        System.out.println( count );
+        String sql = "insert into users values(?,?,?)";
+        int count = template.update( sql, "pandora", "123456", 50 );
+        Assert.assertEquals( 1, count );
     }
 
     /**
@@ -46,8 +49,8 @@ public class Demo02JdbcTemplate {
     @Test
     public void test3() {
         String sql = "delete from users where uid = ?";
-        int count = template.update( sql, "琳琳" );
-        System.out.println( count );
+        int count = template.update( sql, "test" );
+        Assert.assertEquals( 1, count );
     }
 
     /**
@@ -57,10 +60,11 @@ public class Demo02JdbcTemplate {
     @Test
     public void test4() {
         String sql = "select * from users where uid = ?";
-        Map<String, Object> map = template.queryForMap( sql, "596459193" );
+        Map<String, Object> map = template.queryForMap( sql, "admin" );
         for (String key : map.keySet()) {
             Object value = map.get( key );
-            //System.out.println( key  + value );
+            //列名为key,值为value
+            System.out.println( key + value );
         }
         System.out.println( map );
     }
@@ -72,8 +76,8 @@ public class Demo02JdbcTemplate {
     public void test5() {
         String sql = "select * from users ";
         List<Map<String, Object>> list = template.queryForList( sql );
-        for (Map<String, Object> stringObjectMap : list) {
-            System.out.println( stringObjectMap );
+        for (Map<String, Object> users : list) {
+            System.out.println( users );
         }
     }
 
@@ -115,7 +119,7 @@ public class Demo02JdbcTemplate {
     @Test
     public void test7() {
         String sql = "select * from students ";
-        List<Student> list = template.query( sql, new BeanPropertyRowMapper<Student>( Student.class ) );
+        List<Student> list = template.query( sql, new BeanPropertyRowMapper<>( Student.class ) );
         for (Student student : list) {
             System.out.println( student );
             //System.out.println(student.getSno());
