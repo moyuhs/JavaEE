@@ -31,7 +31,7 @@
          */
 
         //1.创建方式1
-        var fun1 = new Function("a", "b", "c", "alert(a);");
+        const fun1 = new Function("a", "b", "c", "alert(a);");
         //调用方法
         // fun1(3,4);
         //alert(fun1.length);
@@ -43,10 +43,10 @@
         //fun2(3,4);
 
         //alert(fun2.length);
-        var fun3 = function (a, b) {
+        const fun3 = function (a, b) {
             alert(a + b);
 
-        }
+        };
         //alert(fun3.length);
         // fun3(3,4);
 
@@ -78,14 +78,14 @@
          * 求任意个数的和
          */
         function add() {
-            var sum = 0;
-            for (var i = 0; i < arguments.length; i++) {
+            let sum = 0;
+            for (let i = 0; i < arguments.length; i++) {
                 sum += arguments[i];
             }
             return sum;
         }
 
-        var sum = add(1, 2, 3, 4);
+        const sum = add(1, 2, 3, 4);
         alert(sum);
         //add(1,3);
 
