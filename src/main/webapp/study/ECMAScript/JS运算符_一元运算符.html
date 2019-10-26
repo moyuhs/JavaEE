@@ -17,24 +17,23 @@
                             * string转number：按照字面值转换。如果字面值不是数字，则转为NaN（不是数字的数字）
                             * boolean转number：true转为1，false转为0
          */
-        var num = 3;
-        var a = ++num;
+        let num = 3;
+        let a = ++num;
 
-        document.write(num);// 4
-        document.write(a); // 3 4
+        document.write(num + "<br>");// 4
+        document.write(a + "<br>"); // 3 4
         document.write("<hr>");
 
-        var b = +"123abc";
+        const b = +"123abc";
         document.write(typeof (b));
         document.write(b + 1);
         document.write("<hr>");
 
-        var flag = +true;
-        var f2 = +false;
+        const flag = +true;
+        const f2 = +false;
         document.write(typeof (flag) + "<br>");//number
         document.write(flag + "<br>");// 1
         document.write(f2 + "<br>");// 0
-
 
     </script>
 </head>
