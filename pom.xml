@@ -222,10 +222,18 @@
             <version>3.1.0-m1</version>
         </dependency>
 
+        <!--lombok注解支持-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.10</version>
+        </dependency>
+
+        <!--HuTool工具类-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.0.3</version>
         </dependency>
 
     </dependencies>
