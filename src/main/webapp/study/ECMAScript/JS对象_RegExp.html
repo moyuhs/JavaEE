@@ -16,17 +16,17 @@
          */
 
         //1.
-        var reg = new RegExp("^\\w{6,12}$");
+        const reg = new RegExp("^\\w{6,12}$");
         //2.
-        var reg2 = /^\w{6,12}$/;
+        const reg2 = /^\w{6,12}$/;
 
         /*alert(reg);
         alert(reg2);*/
 
-        var username = "zhangsan";
+        const username = "zhangsan";
 
         //验证
-        var flag = reg2.test(username);
+        const flag = reg2.test(username);
         alert(flag);
 
     </script>

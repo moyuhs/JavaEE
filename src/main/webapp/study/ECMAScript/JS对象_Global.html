@@ -25,29 +25,29 @@
                    一叶子 = %E4%B8%80%E5%8F%B6%E5%AD%90
          *
          */
-        var str = "https://www.yileaf.com?=一叶子";
-        var encode = encodeURI(str);
+        const str = "https://www.yileaf.com?wd=一叶子";
+        const encode = encodeURI(str);
         document.write(encode + "<br>");//%E4%B8%80%E5%8F%B6%E5%AD%90
-        var s = decodeURI(encode);
+        const s = decodeURI(encode);
         document.write(s + "<br>");//一叶子
 
-        var str1 = "http://www.baidu.com?wd=一叶子";
-        var encode1 = encodeURIComponent(str1);
+        const str1 = "http://www.baidu.com?wd=一叶子";
+        const encode1 = encodeURIComponent(str1);
         document.write(encode1 + "<br>");
-        var s1 = decodeURIComponent(encode);
+        const s1 = decodeURIComponent(encode);
         document.write(s1 + "<br>");
 
 
-        var str = "a234abc";
-        var number = parseInt(str);
+        const str2 = "a234abc";
+        const number = parseInt(str2);
         //alert(number + 1);
 
-        var a = NaN;
+        const a = NaN;
 
-        document.write(a == NaN);
+        document.write(a === NaN);
         document.write(isNaN(a));
 
-        var jscode = "alert(123)";
+        const jscode = "alert(123)";
         eval(jscode);
 
     </script>
