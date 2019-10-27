@@ -30,8 +30,8 @@
      */
     // 2.倒计时读秒效果实现
 
-    var second = 5;
-    var time = document.getElementById("time");
+    let second = 5;
+    const time = document.getElementById("time");
 
     //定义一个方法，获取span标签，修改span标签体内容，时间--
     function showTime() {
@@ -44,6 +44,7 @@
 
         time.innerHTML = second + "";
     }
+
     //设置定时器，1秒执行一次该方法
     setInterval(showTime, 1000);
 

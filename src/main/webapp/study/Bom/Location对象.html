@@ -12,23 +12,23 @@
 <script>
     //reload方法，定义一个按钮，点击按钮，刷新当前页面
     //1.获取按钮
-    var btn = document.getElementById("btn");
+    const btn = document.getElementById("btn");
     //2.绑定单击事件
     btn.onclick = function () {
         //3.刷新页面
         location.reload();
-    }
-
+    };
 
     //获取href
-    var href = location.href;
-    //alert(href);
+    const href = location.href;
+    console.log(href);
+
     //点击按钮，去访问www.yileaf.com官网
     //1.获取按钮
-    var goItcast = document.getElementById("go");
+    const goWebsite = document.getElementById("go");
     //2.绑定单击事件
-    goItcast.onclick = function () {
-        //3.去访问www.itcast.cn官网
+    goWebsite.onclick = function () {
+        //3.去访问指定网址
         location.href = "https://www.yileaf.com";
     }
 
