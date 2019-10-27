@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改样式</title>
+</head>
+<style>
+    .NewOne {
+        text-align: center;
+        color: red;
+    }
+
+    #two {
+        color: #00FFFF;
+    }
+
+    .NewTwo {
+        text-align: center;
+    }
+</style>
+<body>
+<div id="one">点击变色</div>
+<div id="two">点击移动</div>
+
+<script>
+    const one = document.getElementById("one");
+    one.onclick = function () {
+        //直接修改样式
+        one.style.fontSize = "20px";
+        //赋值提前定义好的属性
+        one.className = "NewOne";
+    };
+
+    const two = document.getElementById("two");
+    two.onclick = function () {
+        two.className = "NewTwo";
+        two.style.fontSize = "30px";
+    }
+</script>
+</body>
+</html>
