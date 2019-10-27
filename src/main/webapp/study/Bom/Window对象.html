@@ -48,68 +48,63 @@
             4. 特点
                 * Window对象不需要创建可以直接使用 window使用。 window.方法名();
                 * window引用可以省略。  方法名();
-
      */
 
-    /*alert("hello window");
-    window.alert("hello a")*/
-    /*
-     //确认框
-     var flag = confirm("您确定要退出吗？");
+    // alert("hello window");
+    // window.alert("hello a");
 
-     if(flag){
-         //退出操作
+    //确认框
+    /*const flag = confirm("您确定要退出吗？");
 
-         alert("欢迎再次光临！");
-     }else{
-         //提示：手别抖...
-         alert("手别抖...");
-     }*/
+    if (flag) {
+        //退出操作
+        alert("欢迎再次光临！");
+    } else {
+        //提示：手别抖...
+        alert("手别抖...");
+    }*/
 
-    /*
+    //输入框
+    /*const result = prompt("请输入用户名");
+    alert(result);*/
 
-           //输入框
-           var result =  prompt("请输入用户名");
-           alert(result);
-    */
-    /* //打开新窗口
-     var openBtn = document.getElementById("openBtn");
-     var newWindow;
-     openBtn.onclick = function(){
-         //打开新窗口
-         newWindow = open("https://www.baidu.com");
-     }
+    //打开新窗口
+    const openBtn = document.getElementById("openBtn");
+    let newWindow;
+    openBtn.onclick = function () {
+        //打开新窗口
+        newWindow = open("https://www.baidu.com");
+    }
 
-     //关闭新窗口
-     var closeBtn = document.getElementById("closeBtn");
-     closeBtn.onclick = function(){
+    //关闭新窗口
+    const closeBtn = document.getElementById("closeBtn");
+    closeBtn.onclick = function () {
         // 关闭新窗口
-         newWindow.close();
-     }*/
+        newWindow.close();
+    }
+
+    function fun() {
+        alert('boom~~');
+    }
 
     //一次性定时器
-    //setTimeout("fun();",2000);
-    //var id = setTimeout(fun,2000);
-    //clearTimeout(id);
-    /* function fun(){
-         alert('boom~~');
-     }
+    //setTimeout("fun();", 2000);
+    /*const id = setTimeout(fun, 2000);
+    clearTimeout(id);*/
 
-     //循环定时器
-     var id = setInterval(fun,2000);
-     clearInterval(id);
-*/
+    //循环定时器
+    /*const id = setInterval(fun, 2000);
+    clearInterval(id);*/
 
 
-    /* //获取history
-     var h1 =  window.history;
-     var h2 = history;
+    //获取history
+    const h1 = window.history;
+    const h2 = history;
 
-     alert(h1);
-     alert(h2);
-*/
-    var openBtn = window.document.getElementById("openBtn");
-    alert(openBtn);
+    console.log(h1);
+    console.log(h2);
+
+    console.log(openBtn);
     /*document.getElementById("");*/
 </script>
 </body>
