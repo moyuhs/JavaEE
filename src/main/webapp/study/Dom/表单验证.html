@@ -12,7 +12,7 @@
 
         body {
             background: url("../../img/register_bg.png") no-repeat center;
-            padding-top: 25px;
+            margin: 240px auto;
         }
 
         .rg_layout {
@@ -118,8 +118,8 @@
                 2.定义一些方法分别校验各个表单项。
                 3.给各个表单项绑定onblur事件。
          */
-
         window.onload = function () {
+
             //1.给表单绑定onsubmit事件
             document.getElementById("form").onsubmit = function () {
                 return checkUsername() && checkPassword();
