@@ -7,15 +7,17 @@ import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
- * Jsoup快速入门:可以解析网页，所以能用做爬虫
+ * @Description : Jsoup快速入门:可以解析网页，所以能用做爬虫
+ * @Author : Haotian
  */
 public class Demo01Jsoup {
     public static void main(String[] args) throws IOException {
         //1.获取Document对象，根据xml文档获取
         //1.2获取student.xml的path
-        String path = Demo01Jsoup.class.getClassLoader().getResource( "jsoup/student.xml" ).getPath();
+        String path = Objects.requireNonNull( Demo01Jsoup.class.getClassLoader().getResource( "jsoup/student.xml" ) ).getPath();
 
         //1.2解析xml文档，加载文档进内存，获取Dom树--->Document
         Document document = Jsoup.parse( new File( path ), "utf-8" );
