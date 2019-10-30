@@ -90,27 +90,27 @@ public class Demo02Jsoup {
         for (Element element : elements) {
             System.out.println(element);
         }*/
+
         System.out.println( "----------设定电影推送系统----------" );
         Scanner scanner = new Scanner( System.in );
         System.out.println( "请输入电影名：" );
         String s = scanner.next();
         while (true) {
-            URL url = new URL( "https://www.dytt8.net" );//代表网络中的一个资源路径
+            //代表网络中的一个资源路径
+            URL url = new URL( "https://www.dytt8.net" );
             Document document = Jsoup.parse( url, 10000 );
 
             Element element = document.getElementsByAttributeValue( "class", "co_content2" ).get( 1 );
             Elements elements = element.getElementsByTag( "a" );
             String text = elements.html();
-            //System.out.println(text);
+            System.out.println( text );
             boolean contains = text.contains( s );
             if (contains) {
                 System.out.println( "电影已发布" );
                 break;
-            } else {
-                System.out.println( "电影未发布" );
             }
+            System.out.println( "电影未发布" );
         }
-
-
     }
 }
+
