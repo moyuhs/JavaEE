@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /**
  * @Description : 配置多个访问路径
- * @Author : 13795
+ * @Author : Haotian
  */
 @WebServlet({"/d3", "/javaee/demo3"})
 public class Demo03Servlet extends HttpServlet {
