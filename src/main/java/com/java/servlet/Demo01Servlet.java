@@ -1,27 +1,27 @@
 package com.java.servlet;
 
 import javax.servlet.*;
-import java.io.IOException;
 
 /**
  * Servlet快速入门
- *通过web.xml配置方式访问
+ * 通过web.xml配置方式访问
  */
 public class Demo01Servlet implements Servlet {
     /**
      * 初始化方法
      * 在Servlet被创建时执行，只会执行一次
+     *
      * @param servletConfig
-     * @throws ServletException
      */
     @Override
-    public void init(ServletConfig servletConfig) throws ServletException {
+    public void init(ServletConfig servletConfig) {
         System.out.println( "init......" );
     }
 
     /**
      * 获取ServletConfig对象
      * ServletConfig：Servlet的配置对象
+     *
      * @return
      */
     @Override
@@ -32,18 +32,18 @@ public class Demo01Servlet implements Servlet {
     /**
      * 提供服务的方法
      * 每一次Servlet被访问时执行，执行多次
+     *
      * @param servletRequest
      * @param servletResponse
-     * @throws ServletException
-     * @throws IOException
      */
     @Override
-    public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
+    public void service(ServletRequest servletRequest, ServletResponse servletResponse) {
         System.out.println( "Hello Servlet" );
     }
 
     /**
      * 获取Servlet的一些信息，版本，作者等。。
+     *
      * @return
      */
     @Override
@@ -57,6 +57,6 @@ public class Demo01Servlet implements Servlet {
      */
     @Override
     public void destroy() {
-        System.out.println("destroy.....");
+        System.out.println( "destroy....." );
     }
 }
