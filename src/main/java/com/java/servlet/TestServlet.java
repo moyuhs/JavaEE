@@ -1,5 +1,7 @@
 package com.java.servlet;
 
+import cn.hutool.core.lang.Console;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,14 +11,15 @@ import java.io.IOException;
 
 @WebServlet("/testServlet")
 public class TestServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
-        String msg = request.getParameter("msg");
-
-        System.out.println(name+":"+msg);
+        String name = request.getParameter( "name" );
+        String msg = request.getParameter( "msg" );
+        Console.log( name + ":" + msg );
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.doPost(request, response);
+        this.doPost( request, response );
     }
 }
