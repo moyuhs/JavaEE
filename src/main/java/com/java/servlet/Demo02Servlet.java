@@ -1,8 +1,10 @@
 package com.java.servlet;
 
-import javax.servlet.*;
+import javax.servlet.Servlet;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
-import java.io.IOException;
 
 /**
  * Servlet快速入门
