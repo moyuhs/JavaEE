@@ -11,6 +11,7 @@ import java.io.IOException;
 
 @WebServlet("/Demo7request")
 public class Demo7Request extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         System.out.println( "Demo7request被访问了......" );
@@ -18,9 +19,9 @@ public class Demo7Request extends HttpServlet {
         //获取对应的值getAttribute
         Object msg = request.getAttribute( "msg" );
         System.out.println( msg );
-
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //get 获取请求参数
         /*String pwd = request.getParameter( "pwd" );

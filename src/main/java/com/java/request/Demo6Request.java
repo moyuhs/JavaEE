@@ -11,6 +11,7 @@ import java.io.IOException;
 
 @WebServlet("/Demo6request")
 public class Demo6Request extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         System.out.println( "Demo6request被访问了......" );
@@ -22,6 +23,7 @@ public class Demo6Request extends HttpServlet {
         request.getRequestDispatcher( "/Demo7request" ).forward( request, response );
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //get 获取请求参数
         /*String pwd = request.getParameter( "pwd" );

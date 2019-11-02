@@ -10,10 +10,12 @@ import java.util.Enumeration;
 
 @WebServlet("/Demo2request")
 public class Demo2Request extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //演示获取请求头数据
 
@@ -26,6 +28,5 @@ public class Demo2Request extends HttpServlet {
             String value = request.getHeader( name );
             System.out.println( name + "---" + value );
         }
-
     }
 }

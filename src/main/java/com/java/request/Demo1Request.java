@@ -13,10 +13,12 @@ import java.io.IOException;
 
 @WebServlet("/Demo1request")
 public class Demo1Request extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         /*
             1. 获取请求方式 ：GET

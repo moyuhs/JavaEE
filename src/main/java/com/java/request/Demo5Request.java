@@ -11,16 +11,16 @@ import java.io.IOException;
 
 @WebServlet("/Demo5request")
 public class Demo5Request extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         System.out.println( "Demo5request被访问了......" );
 
         //进行转发
         request.getRequestDispatcher( "/Demo6request" ).forward( request, response );
-
-
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //get 获取请求参数
         /*String pwd = request.getParameter( "pwd" );

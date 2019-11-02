@@ -11,6 +11,7 @@ import java.util.Map;
 
 @WebServlet("/javaee/Demo4request")
 public class Demo4Request extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //post 获取请求参数
 
@@ -51,6 +52,7 @@ public class Demo4Request extends HttpServlet {
         }
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //get 获取请求参数
         /*String pwd = request.getParameter( "pwd" );
