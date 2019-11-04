@@ -30,8 +30,7 @@ public class UserDaoImpl implements UserDao {
     public User findUserByUsernameAndPassword(String username, String password) {
         try {
             String sql = "select * from user where username = ? and password = ?";
-            User user = template.queryForObject( sql, new BeanPropertyRowMapper<User>( User.class ), username, password );
-            return user;
+            return template.queryForObject( sql, new BeanPropertyRowMapper<>( User.class ), username, password );
         } catch (DataAccessException e) {
             e.printStackTrace();
             return null;
@@ -128,8 +127,8 @@ public class UserDaoImpl implements UserDao {
         //添加分页查询参数值
         params.add( start );
         params.add( rows );
-        System.out.println(sb.toString());
-        System.out.println(params);
+        System.out.println( sb.toString() );
+        System.out.println( params );
         return template.query( sb.toString(), new BeanPropertyRowMapper<User>( User.class ), params.toArray() );
     }
 }

@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         //3.验证码校验
         HttpSession session = req.getSession();
         //3.1 获取存放在session作用域中的验证码，忽略大小写比较，需要String类型，强转
-        String checkcode_server = (String) req.getSession().getAttribute( "CHECKCODE_SERVER" );
+        String checkcode_server = (String) session.getAttribute( "CHECKCODE_SERVER" );
         //3.2 确保验证码一次性
         session.removeAttribute( "CHECKCODE_SERVER" );
         //验证码不正确
@@ -49,9 +49,7 @@ public class LoginServlet extends HttpServlet {
         User user = new User();
         try {
             BeanUtils.populate( user, map );
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
 

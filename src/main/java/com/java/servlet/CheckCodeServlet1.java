@@ -12,70 +12,88 @@ import java.io.IOException;
 import java.util.Random;
 
 /**
- * 网页验证码实现
+ * 手动创建验证码
  */
 @WebServlet("/checkCodeServlet1")
 public class CheckCodeServlet1 extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int width = 100;//验证码宽度
-        int height = 50;//验证吗高度
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //1.创建对象，在内存中放图片（验证码图片对象）
+        //服务器通知浏览器不要缓存
+        response.setHeader( "pragma", "no-cache" );
+        response.setHeader( "cache-control", "no-cache" );
+        response.setHeader( "expires", "0" );
+
+        //在内存中创建一个长80，宽30的图片，默认黑色背景
+        //参数一：长
+        //参数二：宽
+        //参数三：颜色
+        int width = 80;
+        int height = 30;
         BufferedImage image = new BufferedImage( width, height, BufferedImage.TYPE_INT_RGB );
 
-        //2.美化图片
-        //2.1 填充背景色
-        Graphics g = image.getGraphics();//画笔对象
-        //g.setColor( Color.PINK );
-        g.setColor( new Color( 204, 255, 204 ) );//设置画笔颜色
-        g.fillRect( 0, 0, width, height );//设置填充区域为当前宽高
+        //获取画笔
+        Graphics g = image.getGraphics();
+        //设置画笔颜色为灰色
+        g.setColor( Color.GRAY );
+        //填充图片
+        g.fillRect( 0, 0, width, height );
 
-        //2.2 画边框
-        g.setColor( new Color( 204, 204, 255 ) );
-        g.drawRect( 0, 0, width - 2, height - 2 );
+        //产生4个随机验证码
+        String checkCode = getCheckCode();
+        //将验证码放入HttpSession中
+        request.getSession().setAttribute( "CHECKCODE_SERVER", checkCode );
 
-        //2.3 画验证码
-        String str = "QAZXSWEDCVFRTGBNHYUJMKIOLPqazxswedcvfrtgbnhyujmkiolp0123456789";
-        //生成随机角标
-        Random ran = new Random();
+        //设置画笔颜色为黄色
+        g.setColor( Color.YELLOW );
+        //设置字体的小大
+        g.setFont( new Font( "Microsoft YaHei", Font.BOLD, 23 ) );
+        //向图片上写入验证码
+        g.drawString( checkCode, 15, 25 );
 
-        //存放用于判断的验证码
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 1; i <= 5; i++) {
-            int index = ran.nextInt( str.length() );
-            //获取字符
-            char c = str.charAt( index );//随机字符
-            //设置字体样式
-            g.setFont( new Font( "Microsoft YaHei", Font.BOLD, 24 ) );
-            sb.append( c );
-            //写验证码
-            g.drawString( c + "", width / 6 * i, height / 2 );
-        }
-        String checkCode_session = sb.toString();
-        //将验证码存放入session
-        req.getSession().setAttribute( "checkCode_session", checkCode_session );
-
-        //2.4画干扰线
-        g.setColor( new Color( 102, 204, 255 ) );
-
+        //画干扰线
+        g.setColor( new Color( 255, 255, 255 ) );
         //随机生成坐标点
-        for (int i = 0; i < 10; i++) {
-            int x1 = ran.nextInt( width );
-            int x2 = ran.nextInt( width );
-            int y1 = ran.nextInt( height );
-            int y2 = ran.nextInt( height );
-            g.drawLine( x1, x2, y1, y2 );
+        for (int i = 0; i < 6; i++) {
+            Random r = new Random();
+            int x1 = r.nextInt( width );
+            int y1 = r.nextInt( height );
+            int x2 = r.nextInt( width );
+            int y2 = r.nextInt( height );
+            g.drawLine( x1, y1, x2, y2 );
         }
 
-        //3.将图片输出到页面展示
-        ImageIO.write( image, "jpg", resp.getOutputStream() );
+        //将内存中的图片输出到浏览器
+        //参数一：图片对象
+        //参数二：图片的格式，如PNG,JPG,GIF
+        //参数三：图片输出到哪里去
+        ImageIO.write( image, "PNG", response.getOutputStream() );
+    }
 
+    /**
+     * 产生4位随机字符串
+     */
+    private String getCheckCode() {
+        String base = "QAZXSWEDCVFRTGBNHYUJMKIOLPqazxswedcvfrtgbnhyujmkiolp0123456789";
+        int size = base.length();
+        Random r = new Random();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= 4; i++) {
+            //产生0到size-1的随机值
+            int index = r.nextInt( size );
+            //在base字符串中获取下标为index的字符
+            char c = base.charAt( index );
+            //将c放入到StringBuffer中去
+            sb.append( c );
+        }
+        return sb.toString();
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.doPost( req, resp );
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this.doGet( request, response );
     }
 }
+
+
+
