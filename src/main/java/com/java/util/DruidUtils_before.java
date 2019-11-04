@@ -13,7 +13,7 @@ import java.util.Properties;
 /**
  * Druid连接池的工具类
  */
-public class DruidUtils {
+public class DruidUtils_before {
 
     /**
      * 定义成员变量 DataSource

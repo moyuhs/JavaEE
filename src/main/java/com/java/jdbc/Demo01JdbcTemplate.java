@@ -34,7 +34,7 @@ public class Demo01JdbcTemplate {
                 .sage( 18 )
                 .sphone( "110" ).sphone( "112" )
                 .build();
-        System.out.println(admin==admin2);
+        System.out.println( admin == admin2 );
 //        Student(sno=001, sname=admin, ssex=null, sage=18, department=null, sclass=null, sphone=112)
     }
 }

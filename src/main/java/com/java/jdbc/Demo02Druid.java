@@ -1,6 +1,6 @@
 package com.java.jdbc;
 
-import com.java.util.DruidUtils;
+import com.java.util.DruidUtils_before;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ public class Demo02Druid {
         PreparedStatement pstmt = null;
         try {
             //1.获取连接
-            conn = DruidUtils.getConnection();
+            conn = DruidUtils_before.getConnection();
             //2.定义sql
             String sql = "insert into users value(?,?,?)";
             //3.获取pstmt对象
@@ -31,7 +31,7 @@ public class Demo02Druid {
             e.printStackTrace();
         } finally {
             //6.释放资源
-            DruidUtils.close( pstmt, conn );
+            DruidUtils_before.close( pstmt, conn );
         }
 
     }
