@@ -25,9 +25,7 @@ public class Demo6Request extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //get 获取请求参数
-        /*String pwd = request.getParameter( "pwd" );
-        System.out.println("Get方式"+ pwd );*/
+        //get 获取请求参数直接调用当前类的doPost方法
         this.doPost( request, response );
     }
 }
