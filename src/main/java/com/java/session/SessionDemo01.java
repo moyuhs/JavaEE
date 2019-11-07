@@ -13,6 +13,7 @@ import java.io.IOException;
  */
 @WebServlet("/sessionDemo01")
 public class SessionDemo01 extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1.获取session
         HttpSession session = request.getSession();
@@ -20,6 +21,7 @@ public class SessionDemo01 extends HttpServlet {
         session.setAttribute( "msg", "hello session" );
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost( request, response );
     }
