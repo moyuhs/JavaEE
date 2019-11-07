@@ -1,5 +1,7 @@
 package com.java.cookie;
 
+import cn.hutool.core.date.DateUtil;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -9,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * 使用cookie写出访问提示
@@ -24,12 +24,14 @@ import java.util.Date;
  */
 @WebServlet("/caseCookie")
 public class Case_Cookie extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置响应的消息体的数据格式以及编码
         response.setContentType( "text/html;charset=utf-8" );
         //1.获取cookie
         Cookie[] cookies = request.getCookies();
-        boolean flag = false;//没有cookie为lastTime
+        //没有cookie为lastTime
+        boolean flag = false;
         //2.遍历cookies数组
         if (cookies != null) {
             for (Cookie cookie : cookies) {
@@ -49,41 +51,36 @@ public class Case_Cookie extends HttpServlet {
 
                     //重新设置cookie的value
                     //获取当前时间的字符串，重新设置cookie的值，重新发送cookie
-                    Date date = new Date();
-                    SimpleDateFormat sdf = new SimpleDateFormat( "yyyy年MM月dd日 HH:mm:ss" );
-                    String str_date = sdf.format( date );
+                    String nowDate = DateUtil.now();
                     //URL编码解决特殊字符
-                    str_date = URLEncoder.encode( str_date, "utf-8" );
-                    cookie.setValue( str_date );
+                    nowDate = URLEncoder.encode( nowDate, "utf-8" );
+                    cookie.setValue( nowDate );
 
-                    //设置cookie的存活时间
-                    cookie.setMaxAge( 60 * 60 * 24 * 30 );//一个月
+                    //设置cookie的存活时间一个月
+                    cookie.setMaxAge( 60 * 60 * 24 * 30 );
                     response.addCookie( cookie );
 
                     break;
-
                 }
             }
         }
-        if (cookies == null || cookies.length == 0 || flag == false) {
-            //没有cookie,第一次访问
+        //没有cookie,第一次访问
+        if (cookies == null || cookies.length == 0 || !flag) {
 
             //获取当前时间的字符串，重新设置cookie的值，重新发送cookie
-            Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat( "yyyy年MM月dd日 HH:mm:ss" );
-            String str_date = sdf.format( date );
-            str_date = URLEncoder.encode( str_date, "utf-8" );
-            Cookie cookie = new Cookie( "lastTime", str_date );
-            //设置cookie的存活时间
-            cookie.setMaxAge( 60 * 60 * 24 * 30 );//一个月
+            String nowDate = DateUtil.now();
+            nowDate = URLEncoder.encode( nowDate, "utf-8" );
+            Cookie cookie = new Cookie( "lastTime", nowDate );
+            //设置cookie的存活时间一个月
+            cookie.setMaxAge( 60 * 60 * 24 * 30 );
             response.addCookie( cookie );
 
             //响应数据
             response.getWriter().write( "<h1>您好，欢迎您首次访问</h1>" );
         }
-
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost( request, response );
     }
