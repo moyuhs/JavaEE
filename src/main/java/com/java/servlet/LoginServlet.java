@@ -32,12 +32,13 @@ public class LoginServlet extends HttpServlet {
         //3.验证码校验
         HttpSession session = req.getSession();
         //3.1 获取存放在session作用域中的验证码，忽略大小写比较，需要String类型，强转
-        String checkcode_server = (String) session.getAttribute( "CHECKCODE_SERVER" );
+        String CAPTCHA = (String) session.getAttribute( "CAPTCHA" );
         //3.2 确保验证码一次性
-        session.removeAttribute( "CHECKCODE_SERVER" );
-        //验证码不正确
-        if (!checkcode_server.equalsIgnoreCase( verifycode )) {
-            //提示信息
+        session.removeAttribute( "CAPTCHA" );
+
+        //验证码未输入
+        if (CAPTCHA == null || !CAPTCHA.equalsIgnoreCase( verifycode )) {
+            //验证码不正确
             req.setAttribute( "login_msg", "验证码错误！" );
             //跳转登录页面
             req.getRequestDispatcher( "/login.jsp" ).forward( req, resp );

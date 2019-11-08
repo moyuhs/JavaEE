@@ -33,7 +33,7 @@ public class CheckCodeServlet extends HttpServlet {
         //获取验证码
         String checkCode = lineCaptcha.getCode();
         //将验证码放入HttpSession中
-        request.getSession().setAttribute( "CHECKCODE_SERVER", checkCode );
+        request.getSession().setAttribute( "CAPTCHA", checkCode );
         //将验证码输出到浏览器
         lineCaptcha.write( outputStream );
         //关闭输出流
