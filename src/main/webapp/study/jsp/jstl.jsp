@@ -7,11 +7,16 @@
 <html>
 <head>
     <title>jstl学习</title>
+    <style>
+        pre {
+            font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+        }
+    </style>
 </head>
 <body>
 <%
     //判断request域中的一个list集合是否为空，如果不为null则显示遍历集合
-    List list = new ArrayList();
+    List<String> list = new ArrayList<>();
     list.add( "滴滴滴" );
     request.setAttribute( "list", list );
     request.setAttribute( "number", 3 );
@@ -84,7 +89,7 @@
     ${i}${s.index}${s.count} </c:forEach>
 <hr>
 <%
-    List lis = new ArrayList();
+    List<String> lis = new ArrayList<>();
     lis.add( "aaa" );
     lis.add( "bbb" );
     lis.add( "ccc" );
@@ -101,7 +106,7 @@
 <hr>
 <h3>数据展示进表格</h3>
 <%
-    List lisp = new ArrayList();
+    List<Person> lisp = new ArrayList<>();
     lisp.add( new Person( "薇尔莉特", 18, new Date() ) );
     lisp.add( new Person( "艾斯德斯", 24, new Date() ) );
     lisp.add( new Person( "蕾姆", 19, new Date() ) );
