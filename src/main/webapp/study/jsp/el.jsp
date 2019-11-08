@@ -11,9 +11,9 @@
 <body>
 <%
     //在域中储存数据
-    session.setAttribute( "name", "叶迟荒" );
-    request.setAttribute( "name", "琳琳" );
-    session.setAttribute( "age", "23" );
+    session.setAttribute( "name", "楪祈" );
+    request.setAttribute( "name", "艾莉丝" );
+    session.setAttribute( "age", "18" );
 
     //将对象中的数据存放在域中
     Person person = new Person();
@@ -24,15 +24,15 @@
 
     //将链表数据放入域中
     ArrayList<Object> list = new ArrayList<>();
-    list.add( "叶迟荒" );
+    list.add( "莎堤莱萨·艾尔·布丽姬" );
     list.add( "Pi~pa~Pi~pa" );
     list.add( person );
     request.setAttribute( "list", list );
 
-    Map map = new HashMap();
-    map.put( "name", "荒三岁" );
-    map.put( "gender", "女" );
+    Map<String, Object> map = new HashMap<>();
     map.put( "user", person );
+    map.put( "nowName", "拉娜·林沁" );
+    map.put( "gender", "女" );
     request.setAttribute( "map", map );
 
 %>
@@ -60,6 +60,7 @@ ${list[2].name}<br>
 <h3>El获取Map的值</h3>
 ${map.gender}<br>
 ${map["gender"]}<br>
-${map.user.name}
+${map.user.name}<br>
+${map.nowName}
 </body>
 </html>
