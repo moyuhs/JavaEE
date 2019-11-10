@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
 
         //2.获取数据
         //2.1 获取用户输入验证码
-        String verifycode = req.getParameter( "verifycode" );
+        String verifycode = req.getParameter( "captcha" );
 
         //3.验证码校验
         HttpSession session = req.getSession();
