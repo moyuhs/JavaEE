@@ -15,6 +15,7 @@ import java.util.List;
 
 @WebServlet("/userListServlet")
 public class UserListServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1.调用UserService完成查询
         UserService service = new UserServiceImpl();
@@ -25,6 +26,7 @@ public class UserListServlet extends HttpServlet {
         request.getRequestDispatcher( "/list.jsp" ).forward( request, response );
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost( request, response );
     }

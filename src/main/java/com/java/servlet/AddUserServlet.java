@@ -19,6 +19,7 @@ import java.util.Map;
  */
 @WebServlet("/addUserServlet")
 public class AddUserServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1.设置编码
         request.setCharacterEncoding( "utf-8" );
@@ -30,20 +31,19 @@ public class AddUserServlet extends HttpServlet {
         User user = new User();
         try {
             BeanUtils.populate( user, map );
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
         //4.调用service保存
         UserService service = new UserServiceImpl();
-        service.addUser(user);
+        service.addUser( user );
 
         //5.跳转到userListServlet
-        response.sendRedirect( request.getContextPath()+"/userListServlet" );
+        response.sendRedirect( request.getContextPath() + "/userListServlet" );
 
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost( request, response );
     }
