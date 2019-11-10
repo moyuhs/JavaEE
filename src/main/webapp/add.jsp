@@ -66,7 +66,7 @@
         <div class="form-group" style="text-align: center">
             <input class="btn btn-primary" type="submit" value="提交"/>
             <input class="btn btn-default" type="reset" value="重置"/>
-            <a class="btn btn-default" href="/userListServlet" role="button">返回</a>
+            <a class="btn btn-default" href="${pageContext.request.contextPath}/userListServlet" role="button">返回</a>
         </div>
     </form>
 </div>

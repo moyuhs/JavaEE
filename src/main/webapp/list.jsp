@@ -23,9 +23,9 @@
     <script src="js/bootstrap.min.js"></script>
     <style type="text/css">
         /*css禁止用户点击*/
-       /* .disabled {
-            pointer-events: none;
-        }*/
+        /* .disabled {
+             pointer-events: none;
+         }*/
 
         td, th {
             text-align: center;
@@ -46,10 +46,10 @@
             document.getElementById("delSelected").onclick = function () {
                 if (confirm("您确定要删除选中条目吗？")) {
 
-                    var flag = false;
+                    let flag = false;
                     //判断是否有选中条目
-                    var cbs = document.getElementsByName("uid");
-                    for (var i = 0; i < cbs.length; i++) {
+                    const cbs = document.getElementsByName("uid");
+                    for (let i = 0; i < cbs.length; i++) {
                         if (cbs[i].checked) {
                             //有一个条目选中了
                             flag = true;
@@ -61,14 +61,14 @@
                         document.getElementById("form").submit();
                     }
                 }
-            }
+            };
             //全选，全部选
             //1.获取第一个cb
             document.getElementById("firstCb").onclick = function () {
                 //2.获取下边列表中所有的cb
-                var cbs = document.getElementsByName("uid");
+                const cbs = document.getElementsByName("uid");
                 //3.遍历
-                for (var i = 0; i < cbs.length; i++) {
+                for (let i = 0; i < cbs.length; i++) {
                     //4.设置这些cbs[i]的checked状态 = firstCb.checked
                     cbs[i].checked = this.checked;
                 }
@@ -84,16 +84,18 @@
         <form class="form-inline" action="${pageContext.request.contextPath}/findUserByPageServlet" method="post">
             <div class="form-group">
                 <label for="exampleInputName2">姓名</label>
-                <input type="text" name="name" value="${condition.name[0]}" class="form-control" id="exampleInputName2" >
+                <input type="text" name="name" value="${condition.name[0]}" class="form-control" id="exampleInputName2">
             </div>
             <div class="form-group">
                 <label for="exampleInputName3">国籍</label>
-                <input type="text" name="address" value="${condition.address[0]}" class="form-control" id="exampleInputName3" >
+                <input type="text" name="address" value="${condition.address[0]}" class="form-control"
+                       id="exampleInputName3">
             </div>
 
             <div class="form-group">
                 <label for="exampleInputEmail2">邮箱</label>
-                <input type="text" name="email" value="${condition.email[0]}" class="form-control" id="exampleInputEmail2"  >
+                <input type="text" name="email" value="${condition.email[0]}" class="form-control"
+                       id="exampleInputEmail2">
             </div>
             <button type="submit" class="btn btn-default">查询</button>
         </form>
@@ -129,7 +131,7 @@
                     <td>${user.email}</td>
                     <td><a class="btn btn-default btn-sm"
                            href="${pageContext.request.contextPath}/findUserServlet?id=${user.id}">修改</a>&nbsp;
-                        <a class="btn btn-default btn-sm" href="javascript:deleteUser(${user.id});">删除</a></td>
+                        <a class="btn btn-default btn-sm" href="javascript:deleteUser(${user.id})">删除</a></td>
                 </tr>
             </c:forEach>
         </table>

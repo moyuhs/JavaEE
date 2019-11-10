@@ -16,7 +16,7 @@
 <body>
 <div>${user.name},欢迎您</div>
 <div align="center">
-    <a href="/findUserByPageServlet" style="text-decoration:none;font-size:33px">查询所有用户信息</a>
+    <a href="${pageContext.request.contextPath}/findUserByPageServlet" style="text-decoration:none;font-size:33px">查询所有用户信息</a>
 </div>
 </body>
 </html>
