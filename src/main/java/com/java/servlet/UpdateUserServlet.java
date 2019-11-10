@@ -19,6 +19,7 @@ import java.util.Map;
  */
 @WebServlet("/updateUserServlet")
 public class UpdateUserServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //1.设置编码
         request.setCharacterEncoding( "utf-8" );
@@ -30,9 +31,7 @@ public class UpdateUserServlet extends HttpServlet {
         User user = new User();
         try {
             BeanUtils.populate( user, map );
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
 
@@ -41,10 +40,11 @@ public class UpdateUserServlet extends HttpServlet {
         service.updateUser( user );
 
         //5.跳转到查询所有的servlet
-        response.sendRedirect( request.getContextPath() + "/userListServlet" );
+        response.sendRedirect( request.getContextPath() + "/findUserByPageServlet" );
 
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost( request, response );
     }
