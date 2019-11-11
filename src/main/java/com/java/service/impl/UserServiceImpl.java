@@ -70,20 +70,22 @@ public class UserServiceImpl implements UserService {
         }
 
         //1.创建空的PageBean对象
-        PageBean<User> pb = new PageBean<User>();
+        PageBean<User> pb = new PageBean<>();
 
         //2.设置参数
-        pb.setCurrentPage( currentPage );//当前页码
-        pb.setRows( rows );//页面显示条数
+        //设置页码
+        pb.setCurrentPage( currentPage );
+        //设置页面显示条数
+        pb.setRows( rows );
 
         //3.调用dao查询总记录数
-        int totalCount = dao.findTotalCount(condition);
+        int totalCount = dao.findTotalCount( condition );
         pb.setTotalCount( totalCount );
 
         //4.调用dao查询list集合
         //计算开始的记录索引
         int start = (currentPage - 1) * rows;
-        List<User> list = dao.findByPage( start, rows,condition );
+        List<User> list = dao.findByPage( start, rows, condition );
         pb.setList( list );
 
         //5.计算总页码

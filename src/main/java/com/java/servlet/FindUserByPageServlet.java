@@ -22,15 +22,19 @@ public class FindUserByPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding( "utf-8" );
         //1.获取参数
-        String currentPage = request.getParameter( "currentPage" );//当前页码
-        String rows = request.getParameter( "rows" );//每页显示的条数
+        //当前页码
+        String currentPage = request.getParameter( "currentPage" );
+        //每页显示的条数
+        String rows = request.getParameter( "rows" );
 
         //判断前台是否有需要的数据，没有，付初始值
         if (currentPage == null || "".equals( currentPage )) {
-            currentPage = "1";//初始页码
+            //初始页码
+            currentPage = "1";
         }
         if (rows == null || "".equals( rows )) {
-            rows = "6";//初始显示数据条数
+            //初始显示数据条数
+            rows = "6";
         }
 
         //获取条件查询参数
@@ -42,7 +46,8 @@ public class FindUserByPageServlet extends HttpServlet {
 
         //3.将PageBean存入request
         request.setAttribute( "pb", pb );
-        request.setAttribute( "condition", condition );//将查询条件存入request域
+        //将查询条件存入request域
+        request.setAttribute( "condition", condition );
 
         //4.装发到list.jsp
         request.getRequestDispatcher( "/list.jsp" ).forward( request, response );

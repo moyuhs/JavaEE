@@ -60,7 +60,7 @@ public interface UserDao {
      * @return
      * @param condition
      */
-    int findTotalCount(Map<String, String[]> condition);
+    Integer findTotalCount(Map<String, String[]> condition);
 
     /**
      * 分页查询每页记录

@@ -22,8 +22,7 @@ public class UserDaoImpl implements UserDao {
         //使用jdbc操作数据库
         //1.定义sql
         String sql = "select * from user";
-        List<User> userList = template.query( sql, new BeanPropertyRowMapper<User>( User.class ) );
-        return userList;
+        return template.query( sql, new BeanPropertyRowMapper<>( User.class ) );
     }
 
     @Override
@@ -58,8 +57,7 @@ public class UserDaoImpl implements UserDao {
         //1.定义sql
         String sql = "select * from user where id = ?";
         //2.执行sql
-        User user = template.queryForObject( sql, new BeanPropertyRowMapper<User>( User.class ), id );
-        return user;
+        return template.queryForObject( sql, new BeanPropertyRowMapper<>( User.class ), id );
     }
 
     @Override
@@ -71,32 +69,19 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int findTotalCount(Map<String, String[]> condition) {
+    public Integer findTotalCount(Map<String, String[]> condition) {
         //1.定义sql
         String sql = "select count(*) from user where 1 = 1 ";
         StringBuilder sb = new StringBuilder( sql );
         //2.遍历map
         //定义参数的集合
-        List<Object> params = new ArrayList<Object>();
-        for (String key : condition.keySet()) {
-
-            //排除分页条件参数
-            if ("currentPage".equals( key ) || "rows".equals( key )) {
-                continue;
-            }
-
-            //获取value
-            String value = condition.get( key )[0];
-            //判断value是否有值
-            if (value != null && !"".equals( value )) {
-                //有值
-                sb.append( " and " + key + " like ? " );
-                params.add( "%" + value + "%" );//？条件的值
-            }
-        }
+        List<Object> params = new ArrayList<>();
+        pj( condition, sb, params );
+        Integer i = 0;
         //2.返回总记录条数
         return template.queryForObject( sb.toString(), Integer.class, params.toArray() );
     }
+
 
     @Override
     public List<User> findByPage(int start, int rows, Map<String, String[]> condition) {
@@ -105,7 +90,19 @@ public class UserDaoImpl implements UserDao {
         StringBuilder sb = new StringBuilder( sql );
         //2.遍历map
         //定义参数的集合
-        List<Object> params = new ArrayList<Object>();
+        List<Object> params = new ArrayList<>();
+        pj( condition, sb, params );
+        //添加分页查询
+        sb.append( " limit ?,? " );
+        //添加分页查询参数值
+        params.add( start );
+        params.add( rows );
+        System.out.println( sb.toString() );
+        System.out.println( params );
+        return template.query( sb.toString(), new BeanPropertyRowMapper<>( User.class ), params.toArray() );
+    }
+
+    private void pj(Map<String, String[]> condition, StringBuilder sb, List<Object> params) {
         for (String key : condition.keySet()) {
 
             //排除分页条件参数
@@ -118,17 +115,10 @@ public class UserDaoImpl implements UserDao {
             //判断value是否有值
             if (value != null && !"".equals( value )) {
                 //有值
-                sb.append( " and " + key + " like ? " );
-                params.add( "%" + value + "%" );//？条件的值
+                sb.append( " and " ).append( key ).append( " like ? " );
+                //？条件的值
+                params.add( "%" + value + "%" );
             }
         }
-        //添加分页查询
-        sb.append( " limit ?,? " );
-        //添加分页查询参数值
-        params.add( start );
-        params.add( rows );
-        System.out.println( sb.toString() );
-        System.out.println( params );
-        return template.query( sb.toString(), new BeanPropertyRowMapper<User>( User.class ), params.toArray() );
     }
 }
