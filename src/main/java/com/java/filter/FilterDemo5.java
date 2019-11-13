@@ -12,15 +12,18 @@ import java.io.IOException;
 //@WebFilter(value="/*",dispatcherTypes ={ DispatcherType.FORWARD,DispatcherType.REQUEST})
 public class FilterDemo5 implements Filter {
 
+    @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         System.out.println( "filterDemo5...." );
         chain.doFilter( req, resp );
     }
 
-    public void init(FilterConfig config) throws ServletException {
+    @Override
+    public void init(FilterConfig config) {
 
     }
 
+    @Override
     public void destroy() {
 
     }

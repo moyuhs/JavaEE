@@ -4,9 +4,10 @@ import javax.servlet.*;
 import java.io.IOException;
 
 //@WebFilter("/*")
-public class FilterDemo17 implements Filter {
+public class FilterDemo7 implements Filter {
 
 
+    @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         System.out.println( "filterDemo7执行了..." );
 
@@ -15,10 +16,12 @@ public class FilterDemo17 implements Filter {
         System.out.println( "filterDemo7回来了..." );
     }
 
-    public void init(FilterConfig config) throws ServletException {
+    @Override
+    public void init(FilterConfig config) {
 
     }
 
+    @Override
     public void destroy() {
     }
 

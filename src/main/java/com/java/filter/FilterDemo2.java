@@ -7,6 +7,7 @@ import java.io.IOException;
 public class FilterDemo2 implements Filter {
 
 
+    @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         //对request对象请求消息增强
         System.out.println( "filterDemo2执行了...." );
@@ -18,11 +19,12 @@ public class FilterDemo2 implements Filter {
         System.out.println( "filterDemo2回来了..." );
     }
 
-    public void init(FilterConfig config) throws ServletException {
+    @Override
+    public void init(FilterConfig config) {
 
     }
 
+    @Override
     public void destroy() {
     }
-
 }

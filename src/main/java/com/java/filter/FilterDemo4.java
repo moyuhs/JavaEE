@@ -8,15 +8,18 @@ import java.io.IOException;
 //@WebFilter("*.jsp")   //3. 后缀名拦截： *.jsp	访问所有后缀名为jsp资源时，过滤器都会被执行
 public class FilterDemo4 implements Filter {
 
+    @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         System.out.println( "filterDemo4...." );
         chain.doFilter( req, resp );
     }
 
-    public void init(FilterConfig config) throws ServletException {
+    @Override
+    public void init(FilterConfig config) {
 
     }
 
+    @Override
     public void destroy() {
     }
 

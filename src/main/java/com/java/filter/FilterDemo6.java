@@ -7,18 +7,21 @@ import java.io.IOException;
 public class FilterDemo6 implements Filter {
 
 
+    @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        System.out.println("filterDemo6执行了...");
+        System.out.println( "filterDemo6执行了..." );
 
-        chain.doFilter(req, resp);
+        chain.doFilter( req, resp );
 
-        System.out.println("filterDemo6回来了...");
+        System.out.println( "filterDemo6回来了..." );
     }
 
-    public void init(FilterConfig config) throws ServletException {
+    @Override
+    public void init(FilterConfig config) {
 
     }
 
+    @Override
     public void destroy() {
     }
 
