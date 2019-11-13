@@ -34,7 +34,7 @@ public class ProxyTest {
                 System.out.println(args[0]);*/
 
                 //判断是否是sale方法
-                if (method.getName().equals( "sale" )) {
+                if ("sale".equals( method.getName() )) {
                     //1.增强参数
                     double money = (double) args[0];
                     money = money * 0.85;
@@ -45,17 +45,16 @@ public class ProxyTest {
                     //2.增强返回值
                     return obj + " 鼠标垫";
                 } else {
-                    Object obj = method.invoke( alienware, args );
-                    return obj;
+                    return method.invoke( alienware, args );
                 }
             }
         } );
 
         //3.调用方法
-
+        //当调用sale方法时，进行动态代理
         String computer = proxy_alienware.sale( 12000 );
         System.out.println( computer );
+        //进行其他操作，直接原有方式
         //proxy_alienware.show();
-
     }
 }

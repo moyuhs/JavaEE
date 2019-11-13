@@ -10,6 +10,7 @@ import java.io.IOException;
 //@WebFilter("/*")
 public class LoginFilter implements Filter {
 
+    @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         //0.强制转换
         HttpServletRequest request = (HttpServletRequest) req;
@@ -29,19 +30,18 @@ public class LoginFilter implements Filter {
                 chain.doFilter( req, resp );
             } else {
                 //没有登录，跳转登录页面
-
                 request.setAttribute( "login_msg", "您尚未登录，请先登录" );
                 request.getRequestDispatcher( "login.jsp" ).forward( request, resp );
             }
         }
-
-
     }
 
+    @Override
     public void init(FilterConfig config) throws ServletException {
 
     }
 
+    @Override
     public void destroy() {
 
     }
