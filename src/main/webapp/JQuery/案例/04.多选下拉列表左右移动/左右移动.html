@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>左右移动</title>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../../../layui/css/layui.css">
 
     <style>
         #leftName, #btn, #rightName {
@@ -19,20 +20,18 @@
         }
 
         .border {
-            height: 500px;
-            padding: 100px;
+            margin: 200px 700px;
         }
     </style>
 
     <script>
-
         //需求：实现下拉列表选中条目左右选择功能
 
         $(function () {
             //toRight
             $("#toRight").click(function () {
                 //获取右边的下拉列表对象，append(左边下拉列表选中的option)
-                $("#rightName").append($("#leftName > option:selected"));
+                $("#rightName").append($("#leftName > li > a"));
             });
 
             //toLeft
@@ -47,24 +46,41 @@
 </head>
 <body>
 <div class="border">
+    <!--    <select id="leftName" multiple="multiple">-->
+    <!--        <option>张三</option>-->
+    <!--        <option>李四</option>-->
+    <!--        <option>王五</option>-->
+    <!--        <option>赵六</option>-->
+    <!--    </select>-->
+    <ul class="layui-nav layui-nav-tree" lay-filter="test" id="leftName">
+        <li class="layui-nav-item"><a href="javascript:;">张三</a></li>
+        <li class="layui-nav-item"><a href="javascript:;">李四</a></li>
+        <li class="layui-nav-item"><a href="javascript:;">王五</a></li>
+        <li class="layui-nav-item"><a href="javascript:;">赵六</a></li>
+    </ul>
 
-    <select id="leftName" multiple="multiple">
-        <option>张三</option>
-        <option>李四</option>
-        <option>王五</option>
-        <option>赵六</option>
-    </select>
     <div id="btn">
-        <input type="button" id="toRight" value="-->"><br>
-        <input type="button" id="toLeft" value="<--">
-
+        <button type="button" id="toRight" class="layui-btn layui-btn-sm layui-btn-primary">
+            <i class="layui-icon">&#xe602;</i>
+        </button>
+        <button type="button" id="toLeft" class="layui-btn layui-btn-sm layui-btn-primary">
+            <i class="layui-icon">&#xe603;</i>
+        </button>
     </div>
 
-    <select id="rightName" multiple="multiple">
-        <option>钱七</option>
-    </select>
-
+    <!--    <select id="rightName" multiple="multiple">-->
+    <!--        <option>钱七</option>-->
+    <!--    </select>-->
+    <ul class="layui-nav layui-nav-tree" lay-filter="test" id="rightName">
+        <li class="layui-nav-item"><a href="javascript:;">钱七</a></li>
+    </ul>
 </div>
 
+<script src="../../../layui/layui.js"></script>
+<script>
+    layui.use('element', function () {
+        const element = layui.element;
+    });
+</script>
 </body>
 </html>

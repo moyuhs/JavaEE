@@ -2,58 +2,93 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>全选</title>
     <script src="../../../js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../../../layui/css/layui.css">
     <script>
         //分析：需要保证下边的选中状态和第一个复选框的选中状态一致即可
 
         function selectAll(obj) {
             //获取下边的复选框
             $(".itemSelect").prop("checked", obj.checked);
+            alert(obj);
         }
-
     </script>
 </head>
 <body>
-<table id="tab1" border="1" width="800" align="center">
+<table class="layui-table">
+    <colgroup>
+        <col width="100">
+        <col width="200">
+        <col width="200">
+        <col width="300">
+        <col width="80">
+    </colgroup>
+    <thead>
     <tr>
-        <td colspan="5"><input type="button" value="删除"></td>
-    </tr>
-    <tr>
-        <th><input type="checkbox" onclick="selectAll(this)"></th>
+        <th class="layui-form">
+            <input type="checkbox" lay-skin="primary" lay-filter="allChoose" onclick="selectAll(this)">
+        </th>
         <th>分类ID</th>
         <th>分类名称</th>
         <th>分类描述</th>
         <th>操作</th>
     </tr>
+    </thead>
+    <tbody>
     <tr>
-        <td><input type="checkbox" class="itemSelect"></td>
+        <td class="layui-form">
+            <input type="checkbox" lay-skin="primary" class="itemSelect">
+        </td>
         <td>1</td>
         <td>手机数码</td>
         <td>手机数码类商品</td>
         <td><a href="">修改</a>|<a href="">删除</a></td>
     </tr>
     <tr>
-        <td><input type="checkbox" class="itemSelect"></td>
+        <td class="layui-form">
+            <input type="checkbox" lay-skin="primary" class="itemSelect">
+        </td>
         <td>2</td>
         <td>电脑办公</td>
         <td>电脑办公类商品</td>
         <td><a href="">修改</a>|<a href="">删除</a></td>
     </tr>
     <tr>
-        <td><input type="checkbox" class="itemSelect"></td>
+        <td class="layui-form">
+            <input type="checkbox" lay-skin="primary" class="itemSelect">
+        </td>
         <td>3</td>
         <td>鞋靴箱包</td>
         <td>鞋靴箱包类商品</td>
         <td><a href="">修改</a>|<a href="">删除</a></td>
     </tr>
     <tr>
-        <td><input type="checkbox" class="itemSelect"></td>
+        <td class="layui-form">
+            <input type="checkbox" lay-skin="primary" class="itemSelect">
+        </td>
         <td>4</td>
         <td>家居饰品</td>
         <td>家居饰品类商品</td>
         <td><a href="">修改</a>|<a href="">删除</a></td>
     </tr>
+    </tbody>
 </table>
+
+<script src="../../../layui/layui.js"></script>
+<script>
+    //layui实现全选
+    layui.use('form', function () {
+        const form = layui.form;
+        /*此处对应页面属性lay-filter="allChoose"*/
+        form.on('checkbox(allChoose)', function (data) {
+            /*此处对应页面属性class="itemSelect"*/
+            $("input[class='itemSelect']").each(function () {
+                this.checked = data.elem.checked;
+            });
+            form.render('checkbox');
+        });
+    });
+</script>
 </body>
 </html>

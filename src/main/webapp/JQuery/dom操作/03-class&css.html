@@ -1,88 +1,61 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>样式操作</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <script src="../../js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../../layui/css/layui.css">
     <style type="text/css">
-        .one {
+        .default, .second {
+            border-radius: 50%;
+            text-align: center;
+        }
+
+        .default {
             width: 200px;
-            height: 140px;
-            margin: 20px;
-            background: red;
-            border: #000 1px solid;
-            float: left;
-            font-size: 17px;
-            font-family: Roman;
-        }
-
-        div, span {
-            width: 140px;
-            height: 140px;
-            margin: 20px;
-            background: #9999CC;
-            border: #000 1px solid;
-            float: left;
-            font-size: 17px;
-            font-family: Roman;
-        }
-
-        div .mini {
-            width: 40px;
-            height: 40px;
-            background: #CC66FF;
-            border: #000 1px solid;
-            font-size: 12px;
-            font-family: Roman;
-        }
-
-        div .mini01 {
-            width: 40px;
-            height: 40px;
-            background: #CC66FF;
-            border: #000 1px solid;
-            font-size: 12px;
-            font-family: Roman;
+            height: 200px;
+            font-size: 24px;
+            background: #5FB878;
+            line-height: 200px;
+            margin: 200px auto;
         }
 
         /*待用的样式*/
         .second {
             width: 300px;
-            height: 340px;
-            margin: 20px;
-            background: yellow;
-            border: pink 3px dotted;
-            float: left;
-            font-size: 22px;
-            font-family: Roman;
+            height: 300px;
+            background: #1E9FFF;
+            border: #5FB878 3px dotted;
+            font-size: 30px;
+            line-height: 300px;
+            margin: 300px auto;
         }
-
     </style>
     <script type="text/javascript">
 
         $(function () {
-            //<input type="button" value="采用属性增加样式(改变id=one的样式)"  id="b1"/>
+            // 采用属性增加样式(改变id=one的样式)
             $("#b1").click(function () {
-                $("#one").prop("class", "second");
+                $("#one").prop("class", "second layui-anim layui-anim-rotate layui-anim-loop");
             });
-            //<input type="button" value=" addClass"  id="b2"/>
+            // 使用addClass直接添加样式
             $("#b2").click(function () {
-                $("#one").addClass("second");
+                $("#one").addClass("second layui-anim layui-anim-rotate layui-anim-loop");
             });
-            //<input type="button" value="removeClass"  id="b3"/>
+            // 使用removeClass直接删除样式
             $("#b3").click(function () {
-                $("#one").removeClass("second");
+                $("#one").removeClass("second layui-anim layui-anim-rotate layui-anim-loop");
             });
-            //<input type="button" value=" 切换样式"  id="b4"/>
+            // 切换样式
             $("#b4").click(function () {
-                $("#one").toggleClass("second");
+                $("#one").toggleClass("second layui-anim layui-anim-rotate layui-anim-loop");
             });
-            //<input type="button" value=" 通过css()获得id为one背景颜色"  id="b5"/>
+            // 通过css()获得id为one背景颜色
             $("#b5").click(function () {
-                var backgroundColor = $("#one").css("backgroundColor");
+                const backgroundColor = $("#one").css("backgroundColor");
                 alert(backgroundColor);
             });
-            //<input type="button" value=" 通过css()设置id为one背景颜色为绿色"  id="b6"/>
+            // 通过css()设置id为one背景颜色为绿色
             $("#b6").click(function () {
                 $("#one").css("backgroundColor", "green");
             });
@@ -91,23 +64,18 @@
     </script>
 
 </head>
-
 <body>
 
-<input type="button" value="保存" class="mini" name="ok" class="mini"/>
-<input type="button" value="采用属性增加样式(改变id=one的样式)" id="b1"/>
-<input type="button" value=" addClass" id="b2"/>
-<input type="button" value="removeClass" id="b3"/>
-<input type="button" value=" 切换样式" id="b4"/>
-<input type="button" value=" 通过css()获得id为one背景颜色" id="b5"/>
-<input type="button" value=" 通过css()设置id为one背景颜色为绿色" id="b6"/>
+<button type="button" class="layui-btn layui-btn-radius" id="b1">采用属性增加样式(改变id=one的样式)</button>
+<button type="button" class="layui-btn layui-btn-radius" id="b2">addClass</button>
+<button type="button" class="layui-btn layui-btn-radius" id="b3">removeClass</button>
+<button type="button" class="layui-btn layui-btn-radius" id="b4">切换样式</button>
+<button type="button" class="layui-btn layui-btn-radius" id="b5">通过css()获得id为one背景颜色</button>
+<button type="button" class="layui-btn layui-btn-radius" id="b6">通过css()设置id为one背景颜色为绿色</button>
 
-<div id="one">
-    id为one
+<div id="one" class="default">
+    转啊转转啊转啊转
 </div>
 
 </body>
 </html>
-
-
-
