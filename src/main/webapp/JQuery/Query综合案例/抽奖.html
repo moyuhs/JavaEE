@@ -2,9 +2,17 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>jquery案例之抽奖</title>
+    <title>jQuery案例之抽奖</title>
     <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
-
+    <link rel="stylesheet" href="../../layui/css/layui.css">
+    <style>
+        .all {
+            width: 150px;
+            height: 150px;
+            margin-top: 20px;
+            font-size: 22px
+        }
+    </style>
     <script language='javascript' type='text/javascript'>
 
         /*
@@ -19,7 +27,7 @@
                     1.1 停止定时器
                     1.2 给大相框设置src属性
          */
-        var imgs = ["../img/man00.jpg",
+        const imgs = ["../img/man00.jpg",
             "../img/man01.jpg",
             "../img/man02.jpg",
             "../img/man03.jpg",
@@ -28,24 +36,30 @@
             "../img/man06.jpg",
         ];
 
-        var startId;//开始定时器的id
-        var index;//随机角标
+        const usable = "layui-btn layui-btn-lg all";//开始效果
+        const danger = "layui-btn layui-btn-lg layui-btn-danger all";//警告效果
+        const disabled = "layui-btn layui-btn-lg layui-btn-disabled all";//禁止效果
 
-        function panudan(f, t) {//优化方法
-            $("#startID").prop("disabled", f);
-            $("#stopID").prop("disabled", t);
+        let startId;//开始定时器的id
+        let index;//随机角标
+
+        function panudan(oneClass, twoClass) {//优化方法
+            // $("#startID").prop("disabled", f);
+            // $("#stopID").prop("disabled", t);
+            $("#startID").prop("class", oneClass);
+            $("#stopID").prop("class", twoClass);
         }
 
         $(function () {
             //处理按钮是否可以使用的效果
-            panudan(false, true);
+            panudan(usable, disabled);
 
             //1. 给开始按钮绑定单击事件
             $("#startID").click(function () {
                 // 1.1 定义循环定时器 20毫秒执行一次
                 startId = setInterval(function () {
                     //处理按钮是否可以使用的效果
-                    panudan(true, false);
+                    panudan(disabled, danger);
 
                     //1.2生成随机角标 0-6
                     index = Math.floor(Math.random() * 7);//0.000--0.999 --> * 7 --> 0.0-----6.9999
@@ -57,7 +71,7 @@
             //2. 给结束按钮绑定单击事件
             $("#stopID").click(function () {
                 //处理按钮是否可以使用的效果
-                panudan(false, true);
+                panudan(usable, disabled);
 
                 // 1.1 停止定时器
                 clearInterval(startId);
@@ -83,17 +97,9 @@
 </div>
 
 <!-- 开始按钮 -->
-<input
-        id="startID"
-        type="button"
-        value="点击开始"
-        style="width:150px;height:150px;font-size:22px">
+<button type="button" class="layui-btn layui-btn-lg all" id="startID">点击开始</button>
 
 <!-- 停止按钮 -->
-<input
-        id="stopID"
-        type="button"
-        value="点击停止"
-        style="width:150px;height:150px;font-size:22px">
+<button type="button" class="layui-btn layui-btn-lg layui-btn-disabled all" id="stopID">点击停止</button>
 </body>
 </html>
