@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>异步请求方式优化</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
 
         //定义方法
         function fun() {
 
-            $.get("ajaxServlet", {username: "rose"}, function (data) {
+            $.get("/ajaxServlet", {username: "rose"}, function (data) {
                 alert(data);
             }, "text");
 
@@ -22,6 +23,6 @@
 
 </head>
 <body>
-<input type="button" value="发送异步请求" onclick="fun();"><input>
+<button type="button" class="layui-btn layui-btn-radius layui-btn-normal" onclick="fun();">发送异步请求</button>
 </body>
 </html>

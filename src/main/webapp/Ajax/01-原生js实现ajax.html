@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>原生js实现异步</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
     <script>
 
         //定义方法
         function fun() {
             //发送异步请求
             //1.创建核心对象
-            var xmlhttp;
+            let xmlhttp;
             if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
                 xmlhttp = new XMLHttpRequest();
             } else {// code for IE6, IE5
@@ -25,7 +26,7 @@
                     3. 同步或异步请求：true（异步）或 false（同步）
 
              */
-            xmlhttp.open("post","ajaxServlet?username=tom", true);
+            xmlhttp.open("post", "/ajaxServlet?username=tom", true);
 
             //3.发送请求
             xmlhttp.send();
@@ -39,18 +40,16 @@
                 //判断readyState就绪状态是否为4，判断status响应状态码是否为200
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     //获取服务器的响应结果
-                    var responseText = xmlhttp.responseText;
+                    const responseText = xmlhttp.responseText;
                     alert(responseText);
                 }
             }
-
         }
 
     </script>
-
 </head>
 <body>
-<input type="button" value="发送异步请求" onclick="fun();">
-<input>
+<button type="button" class="layui-btn layui-btn-radius layui-btn-normal" onclick="fun();">发送异步请求</button>
+<input type="text" placeholder="请输入标题" class="layui-input" style="width:400px;">
 </body>
 </html>

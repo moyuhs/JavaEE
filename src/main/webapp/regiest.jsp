@@ -9,13 +9,13 @@
             //给username绑定blur事件
             $("#username").blur(function () {
                 //获取文本框输入的值
-                var username = $(this).val();
+                const username = $(this).val();
                 //发送Ajax请求
                 //期望服务器响应回的数据格式：{"userExsit":true,"msg":"此用户名太受欢迎,请更换一个"}
                 //                         {"userExsit":false,"msg":"用户名可用"}
-                $.get("findUserServletName", {username: username}, function (data) {
+                $.get("/findUserServletName", {username: username}, function (data) {
                     //判断userExsit键的值是否是true
-                    var span = $("#m_username");
+                    const span = $("#m_username");
                     if (data.userExsit) {
                         //用户名存在
                         span.css("color", "red");

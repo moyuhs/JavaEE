@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>异步请求</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script>
 
@@ -11,7 +12,7 @@
             //使用$.ajax()发送异步请求
 
             $.ajax({
-                url: "ajaxServlet", // 请求路径
+                url: "/ajaxServlet", // 请求路径
                 type: "POST", //请求方式
                 //data: "username=jack&age=23",//请求参数
                 data: {"username": "jack", "age": 23},
@@ -29,8 +30,8 @@
 </head>
 <body>
 
-<input type="button" value="发送异步请求" onclick="fun();">
+<button type="button" class="layui-btn layui-btn-radius layui-btn-normal" onclick="fun();">发送异步请求</button>
+<input type="text" placeholder="请输入标题" class="layui-input" style="width:400px;">
 
-<input>
 </body>
 </html>

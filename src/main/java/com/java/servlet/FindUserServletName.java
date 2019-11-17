@@ -20,6 +20,7 @@ import java.util.Map;
  */
 @WebServlet("/findUserServletName")
 public class FindUserServletName extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //设置响应的数据格式为json
         response.setContentType( "application/json; charset=utf-8" );
@@ -56,6 +57,7 @@ public class FindUserServletName extends HttpServlet {
         mapper.writeValue( response.getWriter(), map );
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost( request, response );
     }

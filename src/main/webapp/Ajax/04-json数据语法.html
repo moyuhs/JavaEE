@@ -5,16 +5,16 @@
     <title>Title</title>
     <script>
         //1.定义基本格式
-        var person = {"name": "貂蝉", age: 23, 'gender': true};
+        const person = {"name": "貂蝉", age: 23, 'gender': true};
 
         //获取name的值
         //var name = person.name;
-        var name = person["name"];
+        const name = person["name"];
         //alert(name);
         //alert(person);
 
         //2.嵌套格式   {}———> []
-        var persons = {
+        const persons = {
             "persons": [
                 {"name": "貂蝉", "age": 22, "gender": true},
                 {"name": "妲己", "age": 24, "gender": true},
@@ -23,11 +23,11 @@
         };
         //alert(persons.persons[1].name); 获取参数：数据对象.对象.[数组索引].属性名
 
-        //var name1 = persons.persons[2].name;
+        const name1 = persons.persons[2].name;
         alert(name1);
 
         //2.嵌套格式   []———> {}
-        var ps = [
+        const ps = [
             {"name": "貂蝉", "age": 22, "gender": true},
             {"name": "妲己", "age": 24, "gender": true},
             {"name": "露娜", "age": 26, "gender": false}
@@ -36,7 +36,6 @@
         //alert(ps[1].name);
 
     </script>
-
 </head>
 <body>
 </body>

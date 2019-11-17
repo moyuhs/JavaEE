@@ -37,9 +37,6 @@ public class JacksonTest {
         String json = mapper.writeValueAsString( p );
         System.out.println( json );//{"name":"妲己","age":24,"birthday":1557645385599,"a":null,"birStr":"2019-05-12 15:16:25"}
 
-        //writeValue，将数据写到d://a.txt文件中
-        //mapper.writeValue(new File("d://a.txt"),p);
-
         //writeValue.将数据关联到Writer中
         mapper.writeValue( new FileWriter( "d://b.txt" ), p );
 
@@ -85,7 +82,6 @@ public class JacksonTest {
         list.add( p1 );
         list.add( p2 );
 
-
         //3.转换
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString( list );
@@ -107,6 +103,7 @@ public class JacksonTest {
 
         System.out.println( json );
     }
+
     //演示 JSON字符串转为Java对象
     @Test
     public void test5() throws Exception {
@@ -116,9 +113,9 @@ public class JacksonTest {
         //2.创建ObjectMapper对象
         ObjectMapper mapper = new ObjectMapper();
         //3.转换为Java对象 Person对象
-        Person person = mapper.readValue(json, Person.class);
+        Person person = mapper.readValue( json, Person.class );
 
-        System.out.println(person);
+        System.out.println( person );
     }
 
 }
