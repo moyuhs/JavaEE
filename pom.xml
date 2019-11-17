@@ -177,11 +177,6 @@
             <artifactId>mchange-commons-java</artifactId>
             <version>0.2.15</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>com.mchange</groupId>-->
-        <!--            <artifactId>mchange-commons-java</artifactId>-->
-        <!--            <version>0.2.15</version>-->
-        <!--        </dependency>-->
 
         <dependency>
             <groupId>commons-codec</groupId>
@@ -212,9 +207,16 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-
             <version>2.10.0</version>
         </dependency>
+
+        <!--fastjson解析器 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.62</version>
+        </dependency>
+
 
         <!--redis解析器-->
         <dependency>

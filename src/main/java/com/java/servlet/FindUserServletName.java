@@ -1,5 +1,6 @@
 package com.java.servlet;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.java.domain.User;
 import com.java.service.UserService;
@@ -39,7 +40,6 @@ public class FindUserServletName extends HttpServlet {
 
         for (User user : users) {
             String name = user.getUsername();
-            //System.out.println( name );
             if (name.equals( username )) {
                 //存在
                 map.put( "userExsit", true );
@@ -51,10 +51,12 @@ public class FindUserServletName extends HttpServlet {
         }
 
         //4.将map转为json，并且传递给客户端
-        //将map转为json
-        ObjectMapper mapper = new ObjectMapper();
+        //将map转为json 使用jackson方式
+        //ObjectMapper mapper = new ObjectMapper();
         //并且传递给客户端
-        mapper.writeValue( response.getWriter(), map );
+        //mapper.writeValue( response.getWriter(), map );
+
+        JSON.writeJSONString( response.getWriter(), map );
     }
 
     @Override
