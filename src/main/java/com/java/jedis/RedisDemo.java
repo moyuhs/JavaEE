@@ -12,7 +12,7 @@ public class RedisDemo {
     @Test
     public void test1() {
         //连接到linux的redis数据库
-        Jedis jedis = new Jedis( "39.105.145.74", 6379 );
+        Jedis jedis = new Jedis( "121.36.24.140", 6379 );
         jedis.auth( "123" );
         //选择要操作的数据库
         jedis.select( 1 );

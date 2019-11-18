@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import static java.lang.System.*;
+
 /**
  * Jedis的测试类
  */
@@ -20,9 +22,13 @@ public class JedisTest {
     @Test
     public void test1() {
         //1.获取连接
-        Jedis jedis = new Jedis( "localhost", 6379 );
-        //2.操作
-        jedis.set( "username", "Mitu" );
+        Jedis jedis = new Jedis( "121.36.24.140", 6379 );
+        jedis.auth( "aiya" );
+
+        //2.操作存
+        jedis.set( "username", "艾莉丝" );
+
+        out.println( jedis.get( "username" ) );
         //3.关闭连接
         jedis.close();
     }
@@ -32,17 +38,17 @@ public class JedisTest {
      */
     @Test
     public void test2() {
-        //1.获取连接
-        Jedis jedis = new Jedis();//如果使用空参构造，默认值"localhost", 6379端口
+        //1.获取连接，如果使用空参构造，默认值"localhost", 6379端口
+        Jedis jedis = new Jedis();
         //2.操作
         //储存
         jedis.set( "username", "Mitu" );
         //获取
-        String username = jedis.get( "username" );
-        System.out.println( username );
+        out.println( jedis.get( "username" ) );
 
         //使用setex()方法可以储存指定时间的key value
-        jedis.setex( "activecode", 20, "jihuo" );//将activecode:jihuo键值对存入redis，并在20秒后删除该键值对
+        //将activecode:jihuo键值对存入redis，并在20秒后删除该键值对
+        jedis.setex( "activecode", 20, "jihuo" );
         //3.关闭连接
         jedis.close();
     }
@@ -52,8 +58,8 @@ public class JedisTest {
      */
     @Test
     public void test3() {
-        //1.获取连接
-        Jedis jedis = new Jedis();//如果使用空参构造，默认值"localhost", 6379端口
+        //1.获取连接，如果使用空参构造，默认值"localhost", 6379端口
+        Jedis jedis = new Jedis();
         //2.操作
         //储存
         jedis.hset( "user", "name", "潘多拉" );
@@ -61,12 +67,12 @@ public class JedisTest {
         jedis.hset( "user", "sex", "男" );
         //获取
         String name = jedis.hget( "user", "name" );
-        System.out.println( name );
+        out.println( name );
         //获取hash中map的所有数据
         Map<String, String> map = jedis.hgetAll( "user" );
         for (String key : map.keySet()) {
             String value = map.get( key );
-            System.out.println( key + ":" + value );
+            out.println( key + ":" + value );
         }
         //3.关闭连接
         jedis.close();
@@ -78,25 +84,26 @@ public class JedisTest {
     @Test
     public void test4() {
         //1.获取连接
-        Jedis jedis = new Jedis();//如果使用空参构造，默认值"localhost", 6379端口
+        Jedis jedis = new Jedis();
         //2.操作
-        //储存
-        jedis.lpush( "mylist", "a", "b", "c" );//从左边存
-        jedis.rpush( "mylist", "a", "b", "c" );//从右边存
+        //从左边存
+        jedis.lpush( "mylist", "a", "b", "c" );
+        //从右边存
+        jedis.rpush( "mylist", "a", "b", "c" );
 
         //获取
         List<String> mylist1 = jedis.lrange( "mylist", 0, -1 );
-        System.out.println( mylist1 );
+        out.println( mylist1 );
 
         //左弹出
         String element1 = jedis.lpop( "mylist" );
-        System.out.println( element1 );
+        out.println( element1 );
         //右弹出
         String element2 = jedis.rpop( "mylist" );
-        System.out.println( element2 );
+        out.println( element2 );
 
         List<String> mylist2 = jedis.lrange( "mylist", 0, -1 );
-        System.out.println( mylist2 );
+        out.println( mylist2 );
 
         //3.关闭连接
         jedis.close();
@@ -108,7 +115,7 @@ public class JedisTest {
     @Test
     public void test5() {
         //1.获取连接
-        Jedis jedis = new Jedis();//如果使用空参构造，默认值"localhost", 6379端口
+        Jedis jedis = new Jedis();
         //2.操作
         //储存
         jedis.sadd( "myset", "java", "php", "c#" );
@@ -116,7 +123,7 @@ public class JedisTest {
         //获取
         Set<String> myset = jedis.smembers( "myset" );
         for (String s : myset) {
-            System.out.println( s );
+            out.println( s );
         }
 
         //3.关闭连接
@@ -129,7 +136,7 @@ public class JedisTest {
     @Test
     public void test6() {
         //1.获取连接
-        Jedis jedis = new Jedis();//如果使用空参构造，默认值"localhost", 6379端口
+        Jedis jedis = new Jedis();
         //2.操作
         //储存
         jedis.zadd( "mysortedset", 10, "亚瑟" );
@@ -137,7 +144,7 @@ public class JedisTest {
         jedis.zadd( "mysortedset", 15, "艾琳" );
         //获取
         Set<String> mysortedset = jedis.zrange( "mysortedset", 0, -1 );
-        System.out.println( mysortedset );
+        out.println( mysortedset );
 
         //3.关闭连接
         jedis.close();
