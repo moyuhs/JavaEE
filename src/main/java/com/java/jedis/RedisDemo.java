@@ -13,7 +13,7 @@ public class RedisDemo {
     public void test1() {
         //连接到linux的redis数据库
         Jedis jedis = new Jedis( "121.36.24.140", 6379 );
-        jedis.auth( "123" );
+        jedis.auth( "aiya" );
         //选择要操作的数据库
         jedis.select( 1 );
 
@@ -47,10 +47,10 @@ public class RedisDemo {
     @Test
     public void testJedisPool() {
         //创建连接池对象
-        JedisPool jedisPool = new JedisPool( "39.105.145.74", 6379 );
+        JedisPool jedisPool = new JedisPool( "121.36.24.140", 6379 );
         //从连接池中获取连接
         Jedis jedis = jedisPool.getResource();
-        jedis.auth( "123" );
+        jedis.auth( "aiya" );
         jedis.select( 1 );
         String result = jedis.get( "welcome" );
         System.out.println( result );
@@ -59,6 +59,4 @@ public class RedisDemo {
         //关闭连接池
         jedisPool.close();
     }
-
-
 }

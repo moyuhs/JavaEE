@@ -15,6 +15,7 @@ import java.io.IOException;
  */
 @WebServlet("/provinceServlet")
 public class ProvinceServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        /* //1.调用service查询
         ProvinceService service = new ProvinceServiceImpl();
@@ -32,9 +33,9 @@ public class ProvinceServlet extends HttpServlet {
         //2.响应结果
         response.setContentType( "application/json;charset=utf-8" );
         response.getWriter().write( json );
-
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost( request, response );
     }

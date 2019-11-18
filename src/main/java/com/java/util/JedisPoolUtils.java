@@ -5,6 +5,7 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Properties;
 
 /**
@@ -21,7 +22,7 @@ public class JedisPoolUtils {
         Properties pro = new Properties();
         //关联文件
         try {
-            pro.load( JedisPoolUtils.class.getClassLoader().getResourceAsStream( "config/jedis/jedis.properties" ) );
+            pro.load( Objects.requireNonNull( JedisPoolUtils.class.getClassLoader().getResourceAsStream( "config/jedis/jedis.properties" ) ) );
         } catch (IOException e) {
             e.printStackTrace();
         }

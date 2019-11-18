@@ -1,7 +1,6 @@
 package com.java.service.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.alibaba.fastjson.JSON;
 import com.java.dao.ProvinceDao;
 import com.java.dao.impl.ProvinceDaoImpl;
 import com.java.domain.Province;
@@ -13,6 +12,7 @@ import java.util.List;
 
 public class ProvinceServiceImpl implements ProvinceService {
     //声明dao
+
     private ProvinceDao dao = new ProvinceDaoImpl();
 
     @Override
@@ -39,13 +39,7 @@ public class ProvinceServiceImpl implements ProvinceService {
             //2.1 从数据库中查询数据
             List<Province> ps = dao.finAll();
             //2.2 将list数据转化为json
-            ObjectMapper mapper = new ObjectMapper();
-            try {
-                province_json = mapper.writeValueAsString( ps );
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-
+            province_json = JSON.toJSONString( ps );
             //2.3 将json数据存入redis中
             jedis.set( "province", province_json );
             //归还连接
